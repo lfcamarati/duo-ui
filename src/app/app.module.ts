@@ -8,10 +8,14 @@ import { AppComponent } from './app.component';
 // PrimeNG
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,9 @@ import { ButtonModule } from 'primeng/button';
 
     // PrimeNG
     SidebarModule,
-    ButtonModule
+    ButtonModule,
+    CardModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
