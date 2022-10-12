@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-*{
+* {
   list-style: none;
   text-decoration: none;
   margin: 0;
@@ -10,6 +10,11 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-body{
+body {
   background: #fdfdfd;
+}
+
+h1.page-title {
+  color: rgb(60, 54, 95);
+  margin-bottom: 1rem;
 }

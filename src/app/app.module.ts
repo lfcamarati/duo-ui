@@ -11,11 +11,17 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { TopbarComponent } from './layout/topbar/topbar.component';
+import { DashboardComponent } from './view/dashboard/dashboard.component';
+import { ClientesListComponent } from './view/clientes/clientes-list/clientes-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    TopbarComponent,
+    DashboardComponent,
+    ClientesListComponent,
   ],
   imports: [
     BrowserModule,

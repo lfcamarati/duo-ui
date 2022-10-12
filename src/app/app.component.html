@@ -2,22 +2,10 @@
   <app-sidebar></app-sidebar>
   
   <div class="section">
-    <div class="top_navbar">
-      <div class="nav_bar_item">
-          <a href="#">
-            <i class="pi pi-bell"></i>
-          </a>
-      </div>
-    </div>
+    <app-topbar></app-topbar>
 
     <div class="main">
-      <h1>Dashboard</h1>
-
-      <div class="content">
-        <p-card>
-          Content
-        </p-card>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
