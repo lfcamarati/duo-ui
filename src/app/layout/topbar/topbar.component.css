@@ -1,4 +1,9 @@
-/* INICIO - navbar */
+:host {
+  position: sticky;
+  width: 100%;
+  top: 0;
+}
+
 :host .top_navbar {
   background: rgb(7, 105, 185);
   height: 50px;
@@ -20,4 +25,3 @@
 :host .top_navbar .nav_bar_item a:hover{
   color: #a2ecff;
 }
-/* FIM - navbar */

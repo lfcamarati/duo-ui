@@ -5,12 +5,15 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 
+const modules = [
+  CommonModule,
+  ButtonModule,
+  CardModule,
+  TableModule,
+]
+
 @NgModule({
-  imports: [
-    CommonModule,
-    ButtonModule,
-    CardModule,
-    TableModule,
-  ],
+  imports: modules,
+  exports: modules
 })
 export class PrimeNGModule { }
