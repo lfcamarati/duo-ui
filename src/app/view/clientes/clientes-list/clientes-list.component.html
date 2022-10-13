@@ -1,5 +1,20 @@
 <h1 class="page-title">Clientes</h1>
 
 <p-card>
-  <p *ngFor="let _ of [].constructor(50)">texto</p>
+  <div class="flex-container action-buttons align-right">
+    <button pButton class="btn-novo" type="button" label="Novo" (click)="novo()"></button>
+  </div>
+
+  <p-table [value]="clientes" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+        <tr>
+            <td>{{cliente.nome}}</td>
+        </tr>
+    </ng-template>
+  </p-table>
 </p-card>

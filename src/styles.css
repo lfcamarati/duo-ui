@@ -18,3 +18,19 @@ h1.page-title {
   color: rgb(60, 54, 95);
   margin-bottom: 1rem;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.action-buttons {
+  margin-right: 30px;
+  margin-bottom: 15px;
+}
+.action-buttons button {
+  margin-right: 5px;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
