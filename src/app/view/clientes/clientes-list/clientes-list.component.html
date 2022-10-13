@@ -7,7 +7,7 @@
   </div>
   
   <p-table #tblclientes styleClass="p-datatable-striped" 
-    selectionMode="single" [value]="clientes" responsiveLayout="scroll"
+    [rowHover]="true" [value]="clientes" responsiveLayout="scroll"
     [globalFilterFields]="['nome']"
   >
     <ng-template pTemplate="header">
