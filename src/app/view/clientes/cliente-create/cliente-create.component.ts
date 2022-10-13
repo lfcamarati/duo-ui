@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-cliente-create',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class ClienteCreateComponent implements OnInit {
 
   constructor(
+    private clientesService: ClientesService,
     private router: Router
   ) { }
 
@@ -16,7 +18,14 @@ export class ClienteCreateComponent implements OnInit {
   }
 
   salvar(): void {
-
+    this.clientesService.salvar('teste').subscribe({
+      next(message) {
+        console.log(message);
+      },
+      error(msg) {
+        console.error(msg)
+      }
+    })
   }
 
   cancelar(): void {
