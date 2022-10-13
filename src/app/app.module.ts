@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+import { PrimeNGModule } from './prime-ng.module';
+
 import { AppComponent } from './app.component';
 
-// PrimeNG
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { TableModule } from 'primeng/table';
+// Views
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
@@ -27,14 +25,11 @@ import { ClientesListComponent } from './view/clientes/clientes-list/clientes-li
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-
-    // PrimeNG
-    SidebarModule,
-    ButtonModule,
-    CardModule,
-    TableModule
+    PrimeNGModule,
   ],
-  providers: [],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
