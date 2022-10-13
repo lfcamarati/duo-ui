@@ -27,8 +27,8 @@ h1.page-title {
   margin-right: 30px;
   margin-bottom: 15px;
 }
-.action-buttons button {
-  margin-right: 5px;
+.action-buttons * {
+  margin-right: 8px;
 }
 
 .align-right {
