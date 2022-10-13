@@ -19,7 +19,7 @@ export class ClientesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 5; i++) {
       this.clientes.push({
         nome: `Cliente ${i+1}`
       })

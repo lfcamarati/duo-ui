@@ -4,16 +4,34 @@
   <div class="flex-container action-buttons align-right">
     <button pButton class="btn-novo" type="button" label="Novo" (click)="novo()"></button>
   </div>
-
-  <p-table [value]="clientes" responsiveLayout="scroll">
+  
+  <p-table styleClass="p-datatable-striped" selectionMode="single" [value]="clientes" responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
-        <th>Nome</th>
+        <th><b>Nome</b></th>
+        <th [width]="50"></th>
+        <th [width]="50"></th>
+        <th [width]="50"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-cliente>
         <tr>
-            <td>{{cliente.nome}}</td>
+          <td>{{cliente.nome}}</td>
+          <td>
+            <a href="#">
+              <span class="icon"><i class="pi pi-eye"></i></span>
+            </a>
+          </td>
+          <td>
+            <a href="#">
+              <span class="icon"><i class="pi pi-file-edit"></i></span>
+            </a>
+          </td>
+          <td>
+            <a class="btn-remover" href="#">
+              <span class="icon"><i class="pi pi-trash"></i></span>
+            </a>
+          </td>
         </tr>
     </ng-template>
   </p-table>
