@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputMaskModule } from 'primeng/inputmask';
 
 const modules = [
   CommonModule,
@@ -16,6 +17,7 @@ const modules = [
   InputTextModule,
   DividerModule,
   SelectButtonModule,
+  InputMaskModule,
 ]
 
 @NgModule({

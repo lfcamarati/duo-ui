@@ -15,7 +15,7 @@
       </div>
 
       <div class="field col-2 p-float-label p-input-filled" *ngIf="isPf()">
-        <input pInputText id="cpf" type="text" class="w-full border-round">
+        <p-inputMask id="cpf" mask="999.999.999-99" styleClass="w-full border-round"></p-inputMask>
         <label for="cpf">CPF</label>
       </div>
 
@@ -24,8 +24,8 @@
         <label for="razaoSocial">Razão Social</label>
       </div>
 
-      <div class="field col-3 p-float-label p-input-filled" *ngIf="isPj()">
-        <input pInputText id="cnpj" type="text" class="w-full border-round">
+      <div class="field col-2 p-float-label p-input-filled" *ngIf="isPj()">
+        <p-inputMask id="cnpj" mask="99.999.999/9999-99" styleClass="w-full border-round"></p-inputMask>
         <label for="cnpj">CNPJ</label>
       </div>
 
@@ -39,13 +39,13 @@
 
     <div class="grid-nogutter">
       <div class="field col-3 p-float-label p-input-filled">
-        <input pInputText id="nome" type="text" class="w-full border-round"> 
-        <label for="nome">Telefone</label>
+        <p-inputMask id="telefone" mask="(99) 99999-9999" styleClass="w-full border-round"></p-inputMask>
+        <label for="telefone">Telefone</label>
       </div>
 
       <span class="field col-3 p-float-label p-input-filled">
-        <input pInputText id="endereco" type="text" class="w-full border-round">
-        <label for="endereco">E-mail</label>
+        <input pInputText id="email" type="text" class="w-full border-round">
+        <label for="email">E-mail</label>
       </span>
     </div>
   <!-- </form> -->
