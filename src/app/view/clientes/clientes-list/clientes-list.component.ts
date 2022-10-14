@@ -27,6 +27,6 @@ export class ClientesListComponent implements OnInit {
   }
 
   novo(): void {
-    this.router.navigateByUrl('/clientes/create');
+    this.router.navigateByUrl('/clientes/novo');
   }
 }

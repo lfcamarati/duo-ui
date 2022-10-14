@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClientesCreateComponent } from './view/clientes/clientes-create/clientes-create.component';
+import { ClientesNewComponent } from './view/clientes/clientes-new/clientes-new.component';
 import { ClientesListComponent } from './view/clientes/clientes-list/clientes-list.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 
@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent },
   { path: 'clientes', component: ClientesListComponent },
-  { path: 'clientes/create', component: ClientesCreateComponent }
+  { path: 'clientes/novo', component: ClientesNewComponent }
 ];
 
 @NgModule({

@@ -1,18 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes.service';
-
-interface TipoCliente {
-  tipo: string,
-  descricao: string
-}
+import { TipoCliente } from '../shared/TipoCliente';
 
 @Component({
-  selector: 'app-clientes-create',
-  templateUrl: './clientes-create.component.html',
-  styleUrls: ['./clientes-create.component.css']
+  selector: 'app-clientes-new',
+  templateUrl: './clientes-new.component.html',
+  styleUrls: ['./clientes-new.component.css']
 })
-export class ClientesCreateComponent implements OnInit {
+export class ClientesNewComponent implements OnInit {
 
   tipos: TipoCliente[] = [];
   tipoSelecionado?: TipoCliente;
