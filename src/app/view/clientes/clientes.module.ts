@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { PrimeNGModule } from 'src/app/prime-ng.module';
-import { ClienteCreateComponent } from './cliente-create/cliente-create.component';
+import { ClientesCreateComponent } from './clientes-create/clientes-create.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
     ClientesListComponent,
-    ClienteCreateComponent
+    ClientesCreateComponent
   ],
   imports: [
     CommonModule,

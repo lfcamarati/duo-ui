@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
-  selector: 'app-cliente-create',
-  templateUrl: './cliente-create.component.html',
-  styleUrls: ['./cliente-create.component.css']
+  selector: 'app-clientes-create',
+  templateUrl: './clientes-create.component.html',
+  styleUrls: ['./clientes-create.component.css']
 })
-export class ClienteCreateComponent implements OnInit {
+export class ClientesCreateComponent implements OnInit {
 
   constructor(
     private clientesService: ClientesService,
