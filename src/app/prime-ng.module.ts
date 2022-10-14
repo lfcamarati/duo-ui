@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { DividerModule } from 'primeng/divider';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 const modules = [
   CommonModule,
@@ -12,6 +14,8 @@ const modules = [
   CardModule,
   TableModule,
   InputTextModule,
+  DividerModule,
+  SelectButtonModule,
 ]
 
 @NgModule({

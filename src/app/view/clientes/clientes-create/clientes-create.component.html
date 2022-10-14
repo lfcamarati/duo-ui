@@ -1,8 +1,59 @@
 <h1 class="page-title">Novo cliente</h1>
 
 <p-card>
-  <div class="flex-container action-buttons">
-    <button pButton class="btn-novo" type="button" label="Salvar" (click)="salvar()"></button>
-    <button pButton class="btn-novo p-button-outlined" type="button" label="Cancelar" (click)="cancelar()"></button>
+  <!-- <form> -->
+    <div class="field">
+      <p-selectButton [options]="tipos" [(ngModel)]="tipoSelecionado" optionLabel="descricao"></p-selectButton>
+    </div>
+
+    <h5>Dados Básicos</h5>
+    
+    <div class="grid-nogutter">
+      <div class="field col-6 p-float-label p-input-filled" *ngIf="isPf()">
+        <input pInputText id="nome" type="text" class="w-full border-round"> 
+        <label for="nome">Nome</label>
+      </div>
+
+      <div class="field col-2 p-float-label p-input-filled" *ngIf="isPf()">
+        <input pInputText id="cpf" type="text" class="w-full border-round">
+        <label for="cpf">CPF</label>
+      </div>
+
+      <div class="field col-6 p-float-label p-input-filled" *ngIf="isPj()">
+        <input pInputText id="razaoSocial" type="text" class="w-full border-round"> 
+        <label for="razaoSocial">Razão Social</label>
+      </div>
+
+      <div class="field col-3 p-float-label p-input-filled" *ngIf="isPj()">
+        <input pInputText id="cnpj" type="text" class="w-full border-round">
+        <label for="cnpj">CNPJ</label>
+      </div>
+
+      <div class="field col-6 p-float-label p-input-filled">
+        <input pInputText id="endereco" type="text" class="w-full border-round">
+        <label for="endereco">Endereço</label>
+      </div>
+    </div>
+
+    <h5>Contatos</h5>
+
+    <div class="grid-nogutter">
+      <div class="field col-3 p-float-label p-input-filled">
+        <input pInputText id="nome" type="text" class="w-full border-round"> 
+        <label for="nome">Telefone</label>
+      </div>
+
+      <span class="field col-3 p-float-label p-input-filled">
+        <input pInputText id="endereco" type="text" class="w-full border-round">
+        <label for="endereco">E-mail</label>
+      </span>
+    </div>
+  <!-- </form> -->
+
+  <p-divider></p-divider>
+
+  <div class="flex">
+    <button pButton class="flex-initial flex m-1 btn-novo" type="button" label="Salvar" (click)="salvar()"></button>
+    <button pButton class="flex-initial flex m-1 btn-novo p-button-outlined" type="button" label="Cancelar" (click)="cancelar()"></button>
   </div>
 </p-card>
