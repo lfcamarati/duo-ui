@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { PrimeNGModule } from 'src/app/prime-ng.module';
 import { ClientesNewComponent } from './clientes-new/clientes-new.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PrimeNGModule,
   ],
   schemas: [

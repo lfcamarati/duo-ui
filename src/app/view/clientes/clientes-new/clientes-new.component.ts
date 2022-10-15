@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { TipoCliente } from '../shared/TipoCliente';
@@ -10,23 +11,38 @@ import { TipoCliente } from '../shared/TipoCliente';
 })
 export class ClientesNewComponent implements OnInit {
 
-  tipos: TipoCliente[] = [];
-  tipoSelecionado?: TipoCliente;
+  tipos: TipoCliente[] = [
+    { tipo: 'PF', descricao: 'Pessoa Física' },
+    { tipo: 'PJ', descricao: 'Pessoa Jurídica' }
+  ];;
+
+  novoClienteForm = new FormGroup({
+    tipo: new FormControl('PF'),
+    nome: new FormControl<string|null>(null),
+    cpf: new FormControl<string|null>(null),
+    razaoSocial: new FormControl<string|null>(null),
+    cnpj: new FormControl<string|null>(null),
+    endereco: new FormControl<string|null>(null, [Validators.required]),
+    telefone: new FormControl<string|null>(null, [Validators.required]),
+    email: new FormControl<string|null>('', [
+      Validators.required,
+      Validators.email
+    ])
+  });
 
   constructor(
-    private clientesService: ClientesService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private clientesService: ClientesService
+  ) {}
 
   ngOnInit(): void {
-    this.tipos = [
-      { tipo: 'PF', descricao: 'Pessoa Física' },
-      { tipo: 'PJ', descricao: 'Pessoa Jurídica' }
-    ]
-    this.tipoSelecionado = this.tipos[0]
+    this.novoClienteForm.controls.tipo.setValue(this.tipos[0].tipo);
+    this.setValidators();
   }
 
   salvar(): void {
+    console.warn(this.novoClienteForm.value);
+
     this.clientesService.salvar('teste').subscribe({
       next(message) {
         console.log(message);
@@ -42,10 +58,35 @@ export class ClientesNewComponent implements OnInit {
   }
 
   isPf(): boolean {
-    return this.tipoSelecionado?.tipo === 'PF';
+    return this.novoClienteForm.controls.tipo.value === 'PF';
   }
 
   isPj(): boolean {
-    return this.tipoSelecionado?.tipo === 'PJ';
+    return this.novoClienteForm.controls.tipo.value === 'PJ';
+  }
+
+  updateTipo(): void {
+    this.setValidators();
+  }
+
+  private setValidators() {
+    let nome = this.novoClienteForm.controls.nome;
+    let cpf = this.novoClienteForm.controls.cpf;
+    let razaoSocial = this.novoClienteForm.controls.razaoSocial;
+    let cnpj = this.novoClienteForm.controls.cnpj;
+
+    if (this.isPf()) {
+      razaoSocial.removeValidators(Validators.required)
+      cnpj.removeValidators(Validators.required)
+      nome.addValidators([Validators.required])
+      cpf.addValidators([Validators.required])
+    } else {
+      nome.removeValidators(Validators.required)
+      cpf.removeValidators(Validators.required)
+      razaoSocial.addValidators([Validators.required])
+      cnpj.addValidators([Validators.required])
+    }
+
+    this.novoClienteForm.updateValueAndValidity();
   }
 }
