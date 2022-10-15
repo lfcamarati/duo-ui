@@ -54,6 +54,16 @@ export class ClientesNewComponent implements OnInit {
   }
 
   cancelar(): void {
+    let confirmBack = true;
+
+    if (this.novoClienteForm.dirty) {
+      confirmBack = confirm('Os dados informados serão perdidos. Deseja sair da página?')
+    }
+
+    if (!confirmBack) {
+      return;
+    }
+    
     this.router.navigateByUrl('/clientes');
   }
 
