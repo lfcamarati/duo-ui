@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ToastModule } from 'primeng/toast';
 
 const modules = [
   CommonModule,
@@ -18,6 +19,7 @@ const modules = [
   DividerModule,
   SelectButtonModule,
   InputMaskModule,
+  ToastModule
 ]
 
 @NgModule({

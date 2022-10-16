@@ -7,32 +7,34 @@
   </div>
   
   <p-table #tblclientes styleClass="p-datatable-striped" 
-    [rowHover]="true" [value]="clientes" responsiveLayout="scroll"
+    [rowHover]="true" [value]="clients" responsiveLayout="scroll"
     [globalFilterFields]="['nome']"
   >
     <ng-template pTemplate="header">
       <tr>
         <th><b>Nome</b></th>
+        <th><b>Tipo</b></th>
         <th [width]="50"></th>
         <th [width]="50"></th>
         <th [width]="50"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-cliente>
+    <ng-template pTemplate="body" let-client>
       <tr>
-        <td>{{cliente.nome}}</td>
+        <td>{{client.name}}</td>
+        <td>{{client.type}}</td>
         <td>
-          <a href="#">
+          <a href="javascript:void(0)">
             <span class="icon"><i class="pi pi-eye"></i></span>
           </a>
         </td>
         <td>
-          <a href="#">
+          <a href="javascript:void(0)">
             <span class="icon"><i class="pi pi-file-edit"></i></span>
           </a>
         </td>
         <td>
-          <a class="btn-remover" href="#">
+          <a class="btn-remover" href="javascript:void(0)" (click)="delete(client.id)">
             <span class="icon"><i class="pi pi-trash"></i></span>
           </a>
         </td>

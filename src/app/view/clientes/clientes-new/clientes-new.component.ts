@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { CreateClient } from 'src/app/domain/CreateClient';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { TipoCliente } from '../shared/TipoCliente';
 
@@ -17,14 +19,14 @@ export class ClientesNewComponent implements OnInit {
   ];;
 
   novoClienteForm = new FormGroup({
-    tipo: new FormControl('PF'),
-    nome: new FormControl<string|null>(null),
-    cpf: new FormControl<string|null>(null),
-    razaoSocial: new FormControl<string|null>(null),
-    cnpj: new FormControl<string|null>(null),
-    endereco: new FormControl<string|null>(null, [Validators.required]),
-    telefone: new FormControl<string|null>(null, [Validators.required]),
-    email: new FormControl<string|null>('', [
+    type: new FormControl('PF'),
+    name: new FormControl<string|null>(null),
+    cpf: new FormControl(null),
+    corporateName: new FormControl(null),
+    cnpj: new FormControl(null),
+    address: new FormControl(null, [Validators.required]),
+    phone: new FormControl(null, [Validators.required]),
+    email: new FormControl('', [
       Validators.required,
       Validators.email
     ])
@@ -32,23 +34,25 @@ export class ClientesNewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private clientesService: ClientesService
+    private clientesService: ClientesService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.novoClienteForm.controls.tipo.setValue(this.tipos[0].tipo);
+    this.novoClienteForm.controls.type.setValue(this.tipos[0].tipo);
     this.setValidators();
   }
 
   salvar(): void {
-    console.warn(this.novoClienteForm.value);
+    let createClient: CreateClient = this.novoClienteForm.value;
 
-    this.clientesService.salvar('teste').subscribe({
-      next(message) {
-        console.log(message);
+    this.clientesService.salvar(createClient).subscribe({
+      next: (message) => {
+        this.messageService.add({severity:'success', detail: "Cliente registrado com sucesso!"})
+        this.router.navigateByUrl('/clientes');
       },
-      error(msg) {
-        console.error(msg)
+      error: (error) => {
+        this.messageService.add({severity:'error', detail: "Erro ao registrar cliente!"})
       }
     })
   }
@@ -68,11 +72,11 @@ export class ClientesNewComponent implements OnInit {
   }
 
   isPf(): boolean {
-    return this.novoClienteForm.controls.tipo.value === 'PF';
+    return this.novoClienteForm.controls.type.value === 'PF';
   }
 
   isPj(): boolean {
-    return this.novoClienteForm.controls.tipo.value === 'PJ';
+    return this.novoClienteForm.controls.type.value === 'PJ';
   }
 
   updateTipo(): void {
@@ -80,23 +84,26 @@ export class ClientesNewComponent implements OnInit {
   }
 
   private setValidators() {
-    let nome = this.novoClienteForm.controls.nome;
+    let name = this.novoClienteForm.controls.name;
     let cpf = this.novoClienteForm.controls.cpf;
-    let razaoSocial = this.novoClienteForm.controls.razaoSocial;
+    let corporateName = this.novoClienteForm.controls.corporateName;
     let cnpj = this.novoClienteForm.controls.cnpj;
 
     if (this.isPf()) {
-      razaoSocial.removeValidators(Validators.required)
+      corporateName.removeValidators(Validators.required)
       cnpj.removeValidators(Validators.required)
-      nome.addValidators([Validators.required])
+      name.addValidators([Validators.required])
       cpf.addValidators([Validators.required])
     } else {
-      nome.removeValidators(Validators.required)
+      name.removeValidators(Validators.required)
       cpf.removeValidators(Validators.required)
-      razaoSocial.addValidators([Validators.required])
+      corporateName.addValidators([Validators.required])
       cnpj.addValidators([Validators.required])
     }
 
-    this.novoClienteForm.updateValueAndValidity();
+    this.novoClienteForm.controls.name.updateValueAndValidity();
+    this.novoClienteForm.controls.cpf.updateValueAndValidity();
+    this.novoClienteForm.controls.corporateName.updateValueAndValidity();
+    this.novoClienteForm.controls.cnpj.updateValueAndValidity();
   }
 }

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface Cliente {
-  nome: string
-}
+import { ClientSearch } from 'src/app/domain/ClientGetAllSearch';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-clientes-list',
@@ -12,21 +10,29 @@ interface Cliente {
 })
 export class ClientesListComponent implements OnInit {
 
-  clientes: Cliente[] = []
+  clients: ClientSearch[] = []
 
   constructor(
-    private router: Router
+    private router: Router,
+    private clientService: ClientesService
   ) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 5; i++) {
-      this.clientes.push({
-        nome: `Cliente ${i+1}`
-      })
-    }
+    this.clientService.getAll().subscribe(response => {
+      this.clients = response.data
+    })
   }
 
   novo(): void {
     this.router.navigateByUrl('/clientes/novo');
+  }
+
+  delete(id: number): void {
+    this.clientService.delete(id).subscribe({
+      next: (response) => {
+        console.log("Removido com sucesso!");
+        this.ngOnInit();
+      }
+    })
   }
 }

@@ -5,7 +5,7 @@
     <div class="field">
       <p-selectButton 
         [options]="tipos" 
-        formControlName="tipo"
+        formControlName="type"
         (ngModelChange)="updateTipo()"
         optionValue="tipo" 
         optionLabel="descricao"
@@ -18,18 +18,19 @@
       <div class="field col-6 p-float-label p-input-filled" *ngIf="isPf()">
         <input 
           pInputText 
-          id="nome" 
+          id="name" 
           type="text" 
-          formControlName="nome" 
+          formControlName="name" 
           class="w-full border-round"> 
-        <label for="nome">Nome</label>
+        <label for="name">Nome</label>
       </div>
 
       <div class="field col-2 p-float-label p-input-filled" *ngIf="isPf()">
         <p-inputMask 
           id="cpf" 
-          mask="999.999.999-99" 
-          formControlName="cpf" 
+          formControlName="cpf"
+          mask="999.999.999-99"
+          [unmask]="true" 
           styleClass="w-full border-round"
         ></p-inputMask>
         <label for="cpf">CPF</label>
@@ -38,11 +39,11 @@
       <div class="field col-6 p-float-label p-input-filled" *ngIf="isPj()">
         <input 
           pInputText 
-          formControlName="razaoSocial" 
-          id="razaoSocial" 
+          formControlName="corporateName" 
+          id="corporateName" 
           type="text" 
           class="w-full border-round"> 
-        <label for="razaoSocial">Razão Social</label>
+        <label for="corporateName">Razão Social</label>
       </div>
 
       <div class="field col-2 p-float-label p-input-filled" *ngIf="isPj()">
@@ -50,6 +51,7 @@
           formControlName="cnpj"  
           id="cnpj" 
           mask="99.999.999/9999-99" 
+          [unmask]="true"
           styleClass="w-full border-round"
         ></p-inputMask>
         <label for="cnpj">CNPJ</label>
@@ -58,11 +60,11 @@
       <div class="field col-6 p-float-label p-input-filled">
         <input 
           pInputText 
-          formControlName="endereco" 
-          id="endereco" 
+          formControlName="address" 
+          id="address" 
           type="text" 
           class="w-full border-round">
-        <label for="endereco">Endereço</label>
+        <label for="address">Endereço</label>
       </div>
     </div>
 
@@ -71,12 +73,13 @@
     <div class="grid-nogutter">
       <div class="field col-3 p-float-label p-input-filled">
         <p-inputMask 
-          formControlName="telefone" 
-          id="telefone" 
-          mask="(99) 99999-9999" 
+          formControlName="phone" 
+          id="phone" 
+          mask="(99) 99999-9999"
+          [unmask]="true"
           styleClass="w-full border-round"
         ></p-inputMask>
-        <label for="telefone">Telefone</label>
+        <label for="phone">Telefone</label>
       </div>
 
       <span class="field col-3 p-float-label p-input-filled">
