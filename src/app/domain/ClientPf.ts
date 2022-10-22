@@ -1,5 +1,5 @@
 export interface ClientPf {
-  id: number
+  id?: number
   name: string
   cpf: string
   address: string

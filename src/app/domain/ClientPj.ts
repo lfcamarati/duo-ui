@@ -1,5 +1,5 @@
 export interface ClientPj {
-  id: number
+  id?: number
   corporateName: string
   cnpj: string
   address: string

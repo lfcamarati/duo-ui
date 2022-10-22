@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClientPf } from '../domain/ClientPf';
-import { CreateClient } from '../domain/CreateClient';
 import { Message } from '../domain/Message';
 import { ResponseDataCollection } from '../infra/ResponseDataCollection';
 
@@ -19,8 +18,8 @@ export class ClientPfService {
     return this.http.get<ResponseDataCollection<ClientPf>>('http://localhost:8080/clients-pf');
   }
 
-  salvar(createClient: CreateClient): Observable<Message> {
-    return this.http.post<Message>('http://localhost:8080/clients-pf', createClient);
+  salvar(clientPf: ClientPf): Observable<Message> {
+    return this.http.post<Message>('http://localhost:8080/clients-pf', clientPf);
   }
 
   delete(id: number): Observable<void> {

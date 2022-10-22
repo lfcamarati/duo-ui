@@ -2,9 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CreateClient } from 'src/app/domain/CreateClient';
+import { ClientPf } from 'src/app/domain/ClientPf';
+import { ClientPj } from 'src/app/domain/ClientPj';
 import { ClientPfService } from 'src/app/services/clientPf.service';
+import { ClientPjService } from 'src/app/services/clientPj.service';
 import { TipoCliente } from '../shared/TipoCliente';
+
+export interface CreateClientInput {
+  type?: string|null
+  name?: string|null
+  cpf?: string|null
+  corporateName?: string|null
+  cnpj?: string|null
+  address?: string|null
+  email?: string|null
+  phone?: string|null
+}
 
 @Component({
   selector: 'app-clientes-new',
@@ -35,7 +48,8 @@ export class ClientesNewComponent implements OnInit {
   constructor(
     private router: Router,
     private messageService: MessageService,
-    private clientPfService: ClientPfService
+    private clientPfService: ClientPfService,
+    private clientPjService: ClientPjService
   ) {}
 
   ngOnInit(): void {
@@ -44,14 +58,33 @@ export class ClientesNewComponent implements OnInit {
   }
 
   salvar(): void {
-    let createClient: CreateClient = this.novoClienteForm.value;
+    let createClientInput: CreateClientInput = this.novoClienteForm.value;
+    let createClientObservable;
 
-    this.clientPfService.salvar(createClient).subscribe({
-      next: (message) => {
+    if (createClientInput.type === 'PF') {
+      createClientObservable = this.clientPfService.salvar({
+        name: createClientInput.name!,
+        cpf: createClientInput.cpf!,
+        address: createClientInput.address!,
+        email: createClientInput.email!,
+        phone: createClientInput.phone!,
+      });
+    } else {
+      createClientObservable = this.clientPjService.salvar({
+        corporateName: createClientInput.corporateName!,
+        cnpj: createClientInput.cnpj!,
+        address: createClientInput.address!,
+        email: createClientInput.email!,
+        phone: createClientInput.phone!,
+      })
+    }
+
+    createClientObservable.subscribe({
+      next: () => {
         this.messageService.add({severity:'success', detail: "Cliente registrado com sucesso!"})
         this.router.navigateByUrl('/clientes');
       },
-      error: (error) => {
+      error: () => {
         this.messageService.add({severity:'error', detail: "Erro ao registrar cliente!"})
       }
     })
