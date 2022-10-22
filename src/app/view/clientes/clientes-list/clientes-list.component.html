@@ -8,7 +8,7 @@
   
   <p-table #tblclientes styleClass="p-datatable-striped" 
     [rowHover]="true" [value]="clients" responsiveLayout="scroll"
-    [globalFilterFields]="['nome']"
+    [globalFilterFields]="['name']"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -34,7 +34,7 @@
           </a>
         </td>
         <td>
-          <a class="btn-remover" href="javascript:void(0)" (click)="delete(client.id)">
+          <a class="btn-remover" href="javascript:void(0)" (click)="delete(client)">
             <span class="icon"><i class="pi pi-trash"></i></span>
           </a>
         </td>

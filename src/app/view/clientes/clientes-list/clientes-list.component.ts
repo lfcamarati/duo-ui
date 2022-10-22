@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientSearch } from 'src/app/domain/ClientGetAllSearch';
-import { ClientesService } from 'src/app/services/clientes.service';
+import { MessageService } from 'primeng/api';
+import { Client } from 'src/app/domain/Client';
+import { ClientService } from 'src/app/services/client.service';
+import { ClientPfService } from 'src/app/services/clientPf.service';
+import { ClientPjService } from 'src/app/services/clientPj.service';
 
 @Component({
   selector: 'app-clientes-list',
@@ -10,11 +13,14 @@ import { ClientesService } from 'src/app/services/clientes.service';
 })
 export class ClientesListComponent implements OnInit {
 
-  clients: ClientSearch[] = []
+  clients: Client[] = []
 
   constructor(
     private router: Router,
-    private clientService: ClientesService
+    private messageService: MessageService,
+    private clientService: ClientService,
+    private clientPfService: ClientPfService,
+    private clientPjService: ClientPjService
   ) { }
 
   ngOnInit(): void {
@@ -27,12 +33,21 @@ export class ClientesListComponent implements OnInit {
     this.router.navigateByUrl('/clientes/novo');
   }
 
-  delete(id: number): void {
-    this.clientService.delete(id).subscribe({
-      next: (response) => {
-        console.log("Removido com sucesso!");
-        this.ngOnInit();
-      }
-    })
+  delete(client: Client): void {
+    if (client.type === 'PF') {
+      this.clientPfService.delete(client.id).subscribe({
+        next: () => {
+          this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
+          this.ngOnInit();
+        }
+      })
+    } else {
+      this.clientPjService.delete(client.id).subscribe({
+        next: () => {
+          this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
+          this.ngOnInit();
+        }
+      })
+    }
   }
 }

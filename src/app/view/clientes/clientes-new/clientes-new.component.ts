@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CreateClient } from 'src/app/domain/CreateClient';
-import { ClientesService } from 'src/app/services/clientes.service';
+import { ClientPfService } from 'src/app/services/clientPf.service';
 import { TipoCliente } from '../shared/TipoCliente';
 
 @Component({
@@ -34,8 +34,8 @@ export class ClientesNewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private clientesService: ClientesService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private clientPfService: ClientPfService
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class ClientesNewComponent implements OnInit {
   salvar(): void {
     let createClient: CreateClient = this.novoClienteForm.value;
 
-    this.clientesService.salvar(createClient).subscribe({
+    this.clientPfService.salvar(createClient).subscribe({
       next: (message) => {
         this.messageService.add({severity:'success', detail: "Cliente registrado com sucesso!"})
         this.router.navigateByUrl('/clientes');
