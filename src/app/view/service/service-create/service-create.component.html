@@ -1,0 +1,59 @@
+<h1 class="page-title">Novo serviço</h1>
+
+<p-card>
+  <form [formGroup]="createServiceForm" (submit)="salvar()">
+    <h5>Dados Básicos</h5>
+    
+    <div class="grid-nogutter">
+      <div class="field col-6 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          id="title" 
+          type="text" 
+          formControlName="title" 
+          class="w-full border-round">
+        <label for="name">Nome</label>
+      </div>
+  
+      <div class="field col-2 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          id="description" 
+          type="text" 
+          formControlName="description" 
+          class="w-full border-round">
+        <label for="cpf">Descrição</label>
+      </div>
+      
+      <div class="field col-2 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          id="price" 
+          type="number" 
+          formControlName="price" 
+          class="w-full border-round">
+        <label for="cpf">Valor</label>
+      </div>
+    </div>
+  
+    <p-divider></p-divider>
+  
+    <div class="flex">
+      <button 
+        pButton
+        [disabled]="!createServiceForm.valid"
+        class="flex-initial flex m-1 btn-novo" 
+        type="submit" 
+        label="Salvar" 
+      ></button>
+  
+      <button 
+        pButton 
+        class="flex-initial flex m-1 btn-novo p-button-outlined" 
+        type="button" 
+        label="Cancelar" 
+        (click)="cancelar()"
+      ></button>
+    </div>
+  </form>  
+</p-card>

@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientpfCreateComponent } from './clientpf/clientpf-create/clientpf-create.component';
 import { ClientpjCreateComponent } from './clientpj/clientpj-create/clientpj-create.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ClientEditComponent } from './client-edit/client-edit.component';
 
 @NgModule({
   declarations: [
     ClientListComponent,
     ClientCreateComponent,
     ClientpfCreateComponent,
-    ClientpjCreateComponent
+    ClientpjCreateComponent,
+    ClientEditComponent
   ],
   imports: [
     CommonModule,

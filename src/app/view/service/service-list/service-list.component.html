@@ -1,0 +1,38 @@
+<h1 class="page-title">Serviços</h1>
+
+<p-card>
+  <div class="flex justify-content-end">
+    <button pButton class="m-1 btn-novo" type="button" label="Novo" (click)="novo()"></button>
+  </div>
+  
+  <p-table #tblclientes styleClass="p-datatable-striped" 
+    [rowHover]="true" [value]="services" responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th><b>Nome</b></th>
+        <th><b>Descrição</b></th>
+        <th><b>Valor</b></th>
+        <th [width]="50"></th>
+        <th [width]="50"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-service>
+      <tr>
+        <td>{{service.title}}</td>
+        <td>{{service.description}}</td>
+        <td>{{service.price}}</td>
+        <td>
+          <a href="javascript:void(0)" (click)="edit(service)">
+            <span class="icon"><i class="pi pi-file-edit"></i></span>
+          </a>
+        </td>
+        <td>
+          <a class="btn-remover" href="javascript:void(0)" (click)="delete(service)">
+            <span class="icon"><i class="pi pi-trash"></i></span>
+          </a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

@@ -15,6 +15,7 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { MessageService } from 'primeng/api';
+import { ServiceModule } from './view/service/service.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MessageService } from 'primeng/api';
     HttpClientModule,
     AppRoutingModule,
     PrimeNGModule,
-    ClientModule
+    ClientModule,
+    ServiceModule
   ],
   providers: [
     MessageService
