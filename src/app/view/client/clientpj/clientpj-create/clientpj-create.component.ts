@@ -83,7 +83,7 @@ export class ClientpjCreateComponent implements OnInit {
           this.router.navigateByUrl('/clientes');
         },
         error: () => {
-          this.messageService.add({severity:'error', detail: "Erro ao registrar cliente!"})
+          this.messageService.add({severity:'error', detail: "Erro ao atualizar cliente!"})
         }
       });
     } else {

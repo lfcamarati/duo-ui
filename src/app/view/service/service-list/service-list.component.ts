@@ -20,9 +20,14 @@ export class ServiceListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.serviceService.getAll().subscribe(response => {
-      this.services = response.data
-    })
+    this.serviceService.getAll().subscribe({
+      next: (response) => {
+        this.services = response.data
+      },
+      error: () => {
+        this.messageService.add({severity:'error', detail: 'Erro ao recuperar serviços!'})
+      }
+    });
   }
 
   novo(): void {
@@ -38,6 +43,9 @@ export class ServiceListComponent implements OnInit {
       next: () => {
         this.messageService.add({severity:'success', detail: "Serviço removido com sucesso!"})
         this.ngOnInit();
+      },
+      error: () => {
+        this.messageService.add({severity:'error', detail: 'Erro ao remover serviço!'})
       }
     })
   }
