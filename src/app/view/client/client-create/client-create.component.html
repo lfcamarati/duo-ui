@@ -1,0 +1,15 @@
+<h1 class="page-title">Novo cliente</h1>
+
+<p-card>
+  <div class="field">
+    <p-selectButton 
+      [options]="tipos" 
+      [(ngModel)]="tipo"
+      (ngModelChange)="updateTipo()"
+      optionValue="tipo" 
+      optionLabel="descricao"
+    ></p-selectButton>
+  </div>
+
+  <router-outlet></router-outlet>
+</p-card>

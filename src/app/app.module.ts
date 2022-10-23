@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PrimeNGModule } from './prime-ng.module';
 
 // Modules
-import { ClientesModule } from './view/clientes/clientes.module';
+import { ClientModule } from './view/client/client.module';
 
 // Views
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { MessageService } from 'primeng/api';
     HttpClientModule,
     AppRoutingModule,
     PrimeNGModule,
-    ClientesModule
+    ClientModule
   ],
   providers: [
     MessageService

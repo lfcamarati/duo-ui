@@ -7,11 +7,11 @@ import { ClientPfService } from 'src/app/services/clientPf.service';
 import { ClientPjService } from 'src/app/services/clientPj.service';
 
 @Component({
-  selector: 'app-clientes-list',
-  templateUrl: './clientes-list.component.html',
-  styleUrls: ['./clientes-list.component.css']
+  selector: 'app-client-list',
+  templateUrl: './client-list.component.html',
+  styleUrls: ['./client-list.component.css']
 })
-export class ClientesListComponent implements OnInit {
+export class ClientListComponent implements OnInit {
 
   clients: Client[] = []
 
@@ -31,6 +31,14 @@ export class ClientesListComponent implements OnInit {
 
   novo(): void {
     this.router.navigateByUrl('/clientes/novo');
+  }
+
+  edit(client: Client): void {
+    if (client.type === 'PF') {
+      this.router.navigateByUrl(`/clientes-pf/editar/${client.id}`);
+    } else {
+      this.router.navigateByUrl(`/clientes-pj/editar/${client.id}`);
+    }
   }
 
   delete(client: Client): void {
