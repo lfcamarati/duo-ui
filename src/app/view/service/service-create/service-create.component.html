@@ -15,23 +15,29 @@
         <label for="name">Nome</label>
       </div>
   
-      <div class="field col-2 p-float-label p-input-filled">
-        <input 
-          pInputText 
+      <div class="field col-6 p-float-label p-input-filled">
+        <textarea
+          pInputTextarea
+          formControlName="description"
           id="description" 
-          type="text" 
-          formControlName="description" 
-          class="w-full border-round">
+          rows="3" 
+          cols="100"
+          class="w-full border-round"
+          maxlength="255">
+        </textarea>
         <label for="cpf">Descrição</label>
       </div>
       
       <div class="field col-2 p-float-label p-input-filled">
-        <input 
-          pInputText 
-          id="price" 
-          type="number" 
-          formControlName="price" 
-          class="w-full border-round">
+        <p-inputNumber
+          inputId="price"
+          formControlName="price"
+          mode="decimal"
+          currency="BRL"
+          locale="pt-BR"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2">
+        </p-inputNumber>
         <label for="cpf">Valor</label>
       </div>
     </div>

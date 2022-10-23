@@ -21,7 +21,7 @@
       <tr>
         <td>{{service.title}}</td>
         <td>{{service.description}}</td>
-        <td>{{service.price}}</td>
+        <td>{{service.price | currency}}</td>
         <td>
           <a href="javascript:void(0)" (click)="edit(service)">
             <span class="icon"><i class="pi pi-file-edit"></i></span>

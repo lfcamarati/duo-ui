@@ -64,9 +64,7 @@ export class ServiceCreateComponent implements OnInit {
       description: createServiceInput.description!,
       price: createServiceInput.price!
     }
-
-    console.log(service);
-
+    
     if (service.id) {
       this.serviceService.update(service).subscribe({
         next: () => {
