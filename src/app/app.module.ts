@@ -16,6 +16,7 @@ import { TopbarComponent } from './layout/topbar/topbar.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { MessageService } from 'primeng/api';
 import { ServiceModule } from './view/service/service.module';
+import { httpInterceptorProviders } from './infra/http/interceptors';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ServiceModule } from './view/service/service.module';
     ServiceModule
   ],
   providers: [
+    httpInterceptorProviders,
     MessageService
   ],
   schemas: [

@@ -23,9 +23,6 @@ export class ServiceListComponent implements OnInit {
     this.serviceService.getAll().subscribe({
       next: (response) => {
         this.services = response.data
-      },
-      error: () => {
-        this.messageService.add({severity:'error', detail: 'Erro ao recuperar serviços!'})
       }
     });
   }
@@ -43,9 +40,6 @@ export class ServiceListComponent implements OnInit {
       next: () => {
         this.messageService.add({severity:'success', detail: "Serviço removido com sucesso!"})
         this.ngOnInit();
-      },
-      error: () => {
-        this.messageService.add({severity:'error', detail: 'Erro ao remover serviço!'})
       }
     })
   }

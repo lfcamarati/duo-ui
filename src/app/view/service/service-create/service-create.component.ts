@@ -70,9 +70,6 @@ export class ServiceCreateComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Serviço atualizado com sucesso!"})
           this.router.navigateByUrl('/servicos');
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: "Erro ao atualizar serviço!"})
         }
       });
     } else {
@@ -80,9 +77,6 @@ export class ServiceCreateComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Serviço registrado com sucesso!"})
           this.router.navigateByUrl('/servicos');
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: "Erro ao registrar serviço!"})
         }
       });
     }

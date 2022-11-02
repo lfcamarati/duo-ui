@@ -15,22 +15,22 @@ export class ClientPjService {
   ) {}
 
   getById(id: number): Observable<ClientPj> {
-    return this.http.get<ClientPj>(`http://localhost:8080/clients-pj/${id}`);
+    return this.http.get<ClientPj>(`/clients-pj/${id}`);
   }
 
   getAll(): Observable<ResponseDataCollection<ClientPj>> {
-    return this.http.get<ResponseDataCollection<ClientPj>>('http://localhost:8080/clients-pj');
+    return this.http.get<ResponseDataCollection<ClientPj>>('/clients-pj');
   }
 
   salvar(clientPj: ClientPj): Observable<Message> {
-    return this.http.post<Message>('http://localhost:8080/clients-pj', clientPj);
+    return this.http.post<Message>('/clients-pj', clientPj);
   }
 
   update(clientPj: ClientPj): Observable<void> {
-    return this.http.put<void>(`http://localhost:8080/clients-pj/${clientPj.id}`, clientPj);
+    return this.http.put<void>(`/clients-pj/${clientPj.id}`, clientPj);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/clients-pj/${id}`);
+    return this.http.delete<void>(`/clients-pj/${id}`);
   }
 }

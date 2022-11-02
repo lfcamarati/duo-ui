@@ -81,9 +81,6 @@ export class ClientpjCreateComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Cliente atualizado com sucesso!"})
           this.router.navigateByUrl('/clientes');
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: "Erro ao atualizar cliente!"})
         }
       });
     } else {
@@ -91,9 +88,6 @@ export class ClientpjCreateComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Cliente registrado com sucesso!"})
           this.router.navigateByUrl('/clientes');
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: "Erro ao registrar cliente!"})
         }
       });
     }

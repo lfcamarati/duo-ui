@@ -14,6 +14,6 @@ export class ClientService {
   ) {}
 
   getAll(): Observable<ResponseDataCollection<Client>> {
-    return this.http.get<ResponseDataCollection<Client>>('http://localhost:8080/clients');
+    return this.http.get<ResponseDataCollection<Client>>('/clients');
   }
 }

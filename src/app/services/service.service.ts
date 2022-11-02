@@ -15,22 +15,22 @@ export class ServiceService {
   ) {}
 
   getById(id: number): Observable<Service> {
-    return this.http.get<Service>(`http://localhost:8080/services/${id}`);
+    return this.http.get<Service>(`/services/${id}`);
   }
 
   getAll(): Observable<ResponseDataCollection<Service>> {
-    return this.http.get<ResponseDataCollection<Service>>('http://localhost:8080/services');
+    return this.http.get<ResponseDataCollection<Service>>('/services');
   }
 
   save(service: Service): Observable<Message> {
-    return this.http.post<Message>('http://localhost:8080/services', service);
+    return this.http.post<Message>('/services', service);
   }
 
   update(service: Service): Observable<void> {
-    return this.http.put<void>(`http://localhost:8080/services/${service.id}`, service);
+    return this.http.put<void>(`/services/${service.id}`, service);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/services/${id}`);
+    return this.http.delete<void>(`/services/${id}`);
   }
 }

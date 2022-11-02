@@ -27,9 +27,6 @@ export class ClientListComponent implements OnInit {
     this.clientService.getAll().subscribe({
       next: (response) => {
         this.clients = response.data
-      },
-      error: () => {
-        this.messageService.add({severity:'error', detail: 'Erro ao recuperar clientes!'})
       }
     })
   }
@@ -52,9 +49,6 @@ export class ClientListComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
           this.ngOnInit();
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: 'Erro ao remover cliente!'})
         }
       })
     } else {
@@ -62,9 +56,6 @@ export class ClientListComponent implements OnInit {
         next: () => {
           this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
           this.ngOnInit();
-        },
-        error: () => {
-          this.messageService.add({severity:'error', detail: 'Erro ao remover cliente!'})
         }
       })
     }
