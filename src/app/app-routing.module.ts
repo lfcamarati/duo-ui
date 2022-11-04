@@ -8,6 +8,9 @@ import { ClientpjCreateComponent } from './view/client/clientpj/clientpj-create/
 import { ClientEditComponent } from './view/client/client-edit/client-edit.component';
 import { ServiceListComponent } from './view/service/service-list/service-list.component';
 import { ServiceCreateComponent } from './view/service/service-create/service-create.component';
+import { ClientDetailsComponent } from './view/client/client-details/client-details.component';
+import { ClientpfDetailsComponent } from './view/client/clientpf/clientpf-details/clientpf-details.component';
+import { ClientpjDetailsComponent } from './view/client/clientpj/clientpj-details/clientpj-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +25,10 @@ const routes: Routes = [
   { path: 'clientes/editar', component: ClientEditComponent, children: [
     { path: 'pf/:id', component: ClientpfCreateComponent },
     { path: 'pj/:id', component: ClientpjCreateComponent }
+  ] },
+  { path: 'clientes/detalhes', component: ClientDetailsComponent, children: [
+    { path: 'pf/:id', component: ClientpfDetailsComponent },
+    { path: 'pj/:id', component: ClientpjDetailsComponent }
   ] },
 
   // Services

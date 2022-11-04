@@ -8,14 +8,26 @@ import { ClientpfCreateComponent } from './clientpf/clientpf-create/clientpf-cre
 import { ClientpjCreateComponent } from './clientpj/clientpj-create/clientpj-create.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ClientEditComponent } from './client-edit/client-edit.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
+import { ClientpfDetailsComponent } from './clientpf/clientpf-details/clientpf-details.component';
+import { ClientpjDetailsComponent } from './clientpj/clientpj-details/clientpj-details.component';
+import { CnpjPipe } from 'src/app/infra/pipe/cnpj.pipe';
+import { CpfPipe } from 'src/app/infra/pipe/cpf.pipe';
+import { PhonePipe } from 'src/app/infra/pipe/phone.pipe';
 
 @NgModule({
   declarations: [
+    CnpjPipe,
+    CpfPipe,
+    PhonePipe,
     ClientListComponent,
     ClientCreateComponent,
     ClientpfCreateComponent,
     ClientpjCreateComponent,
-    ClientEditComponent
+    ClientEditComponent,
+    ClientDetailsComponent,
+    ClientpfDetailsComponent,
+    ClientpjDetailsComponent
   ],
   imports: [
     CommonModule,

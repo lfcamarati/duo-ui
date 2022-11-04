@@ -11,6 +11,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { ToastModule } from 'primeng/toast';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TabViewModule } from 'primeng/tabview';
 
 const modules = [
   CommonModule,
@@ -23,7 +24,8 @@ const modules = [
   InputMaskModule,
   ToastModule,
   InputNumberModule,
-  InputTextareaModule
+  InputTextareaModule,
+  TabViewModule
 ]
 
 @NgModule({

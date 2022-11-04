@@ -35,6 +35,14 @@ export class ClientListComponent implements OnInit {
     this.router.navigateByUrl('/clientes/novo');
   }
 
+  view(client: Client): void {
+    if (client.type === 'PF') {
+      this.router.navigateByUrl(`/clientes/detalhes/pf/${client.id}`);
+    } else {
+      this.router.navigateByUrl(`/clientes/detalhes/pj/${client.id}`);
+    }
+  }
+
   edit(client: Client): void {
     if (client.type === 'PF') {
       this.router.navigateByUrl(`/clientes/editar/pf/${client.id}`);
