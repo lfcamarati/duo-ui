@@ -1,7 +1,11 @@
 <div class="top_navbar">
-  <div class="nav_bar_item">
-      <a href="#">
-        <i class="pi pi-bell"></i>
-      </a>
+  <div class="nav_bar_item" *ngIf="isLogged | async">
+    <a href="#">
+      <i class="pi pi-bell"></i>
+    </a>
+
+    <a href="javascript:void(0)" (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+    </a>
   </div>
 </div>

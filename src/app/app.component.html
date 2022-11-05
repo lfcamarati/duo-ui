@@ -1,6 +1,6 @@
 <div class="wrapper">
   <p-toast></p-toast>
-  <app-sidebar></app-sidebar>
+  <app-sidebar *ngIf="isLogged | async"></app-sidebar>
   
   <div class="section">
     <app-topbar></app-topbar>

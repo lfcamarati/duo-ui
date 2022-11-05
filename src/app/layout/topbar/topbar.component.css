@@ -21,6 +21,7 @@
 :host .top_navbar .nav_bar_item a{
   font-size: 28px;
   color: #f4fbff;
+  margin-left: 25px;
 }
 
 :host .top_navbar .nav_bar_item a:hover{

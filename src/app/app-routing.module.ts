@@ -11,30 +11,35 @@ import { ServiceCreateComponent } from './view/service/service-create/service-cr
 import { ClientDetailsComponent } from './view/client/client-details/client-details.component';
 import { ClientpfDetailsComponent } from './view/client/clientpf/clientpf-details/clientpf-details.component';
 import { ClientpjDetailsComponent } from './view/client/clientpj/clientpj-details/clientpj-details.component';
+import { AuthGuard } from './infra/http/routes/guard/AuthGuard';
+import { LoginComponent } from './view/user/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: DashboardComponent },
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
+
+  // User
+  { path: 'login', component: LoginComponent },
   
   // Clients
-  { path: 'clientes', component: ClientListComponent },
-  { path: 'clientes/novo', component: ClientCreateComponent, children: [
-    { path: 'pf', component: ClientpfCreateComponent },
-    { path: 'pj', component: ClientpjCreateComponent }
+  { path: 'clientes', component: ClientListComponent, canActivate: [AuthGuard] },
+  { path: 'clientes/novo', component: ClientCreateComponent, canActivate: [AuthGuard], children: [
+    { path: 'pf', component: ClientpfCreateComponent, canActivate: [AuthGuard] },
+    { path: 'pj', component: ClientpjCreateComponent, canActivate: [AuthGuard] }
   ] },
-  { path: 'clientes/editar', component: ClientEditComponent, children: [
-    { path: 'pf/:id', component: ClientpfCreateComponent },
-    { path: 'pj/:id', component: ClientpjCreateComponent }
+  { path: 'clientes/editar', component: ClientEditComponent, canActivate: [AuthGuard], children: [
+    { path: 'pf/:id', component: ClientpfCreateComponent, canActivate: [AuthGuard] },
+    { path: 'pj/:id', component: ClientpjCreateComponent, canActivate: [AuthGuard] }
   ] },
-  { path: 'clientes/detalhes', component: ClientDetailsComponent, children: [
-    { path: 'pf/:id', component: ClientpfDetailsComponent },
-    { path: 'pj/:id', component: ClientpjDetailsComponent }
+  { path: 'clientes/detalhes', component: ClientDetailsComponent, canActivate: [AuthGuard], children: [
+    { path: 'pf/:id', component: ClientpfDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'pj/:id', component: ClientpjDetailsComponent, canActivate: [AuthGuard] }
   ] },
 
   // Services
-  { path: 'servicos', component: ServiceListComponent },
-  { path: 'servicos/novo', component: ServiceCreateComponent },
-  { path: 'servicos/editar/:id', component: ServiceCreateComponent },
+  { path: 'servicos', component: ServiceListComponent, canActivate: [AuthGuard] },
+  { path: 'servicos/novo', component: ServiceCreateComponent, canActivate: [AuthGuard] },
+  { path: 'servicos/editar/:id', component: ServiceCreateComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiceListComponent } from './service-list/service-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,9 +20,6 @@ import { ServiceCreateComponent } from './service-create/service-create.componen
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
-  ],
-  providers: [
-    {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'}
   ]
 })
 export class ServiceModule { }
