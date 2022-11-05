@@ -22,13 +22,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.getToken() != null) {
+      this.router.navigate(['home']);
+    }
   }
 
   login() {
     const userLogin: UserLogin = this.loginForm.value;
 
     this.authService.login(userLogin).subscribe({
-      next: (value) => {
+      next: () => {
         this.router.navigateByUrl('/home')
       }
     })

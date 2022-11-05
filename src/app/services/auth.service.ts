@@ -7,7 +7,7 @@ import { User } from '../domain/User';
 import { UserLogin } from '../domain/UserLogin';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
