@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ClientNameObserver } from '../ClientNameObserver';
 
 @Component({
   selector: 'app-client-details',
@@ -7,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent implements OnInit {
+
+  clientName?: Observable<string>
 
   constructor(
     private router: Router,
@@ -17,5 +21,9 @@ export class ClientDetailsComponent implements OnInit {
 
   back() {
     this.router.navigateByUrl('/clientes');
+  }
+
+  loadClientName(compRef: ClientNameObserver) {
+    this.clientName = compRef?.getClientName()
   }
 }

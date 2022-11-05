@@ -1,12 +1,12 @@
 <p-card>
   <div class="flex justify-content-between">
-    <h1 class="page-title">Cliente Xxx</h1>
+    <h1 class="page-title">{{clientName | async}}</h1>
     <button pButton class="m-1 p-button-outlined" type="button" label="Voltar" (click)="back()"></button>
   </div>
 
   <p-tabView>
     <p-tabPanel header="Informações">
-      <router-outlet></router-outlet>
+      <router-outlet (activate)="loadClientName($event)"></router-outlet>
     </p-tabPanel>
     
     <p-tabPanel header="Contratos">
