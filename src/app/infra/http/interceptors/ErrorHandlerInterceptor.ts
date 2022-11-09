@@ -18,7 +18,9 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap({
         error: (error) => {
-          if (error.status === 401) {
+          if (this.router.url === '/') {
+            this.authService.logout();
+          } else if (error.status === 401) {
             this.messageService.add({severity: 'error', detail: "Acesso negado!"});
             this.authService.logout();
           } else if (error.status === 0) {

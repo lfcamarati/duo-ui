@@ -19,6 +19,7 @@ import { ServiceModule } from './view/service/service.module';
 import { httpInterceptorProviders } from './infra/http/interceptors';
 import { LoginComponent } from './view/user/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NotFoundComponent } from './layout/pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TopbarComponent,
     LoginComponent,
     DashboardComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

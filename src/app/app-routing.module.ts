@@ -13,6 +13,7 @@ import { ClientpfDetailsComponent } from './view/client/clientpf/clientpf-detail
 import { ClientpjDetailsComponent } from './view/client/clientpj/clientpj-details/clientpj-details.component';
 import { AuthGuard } from './infra/http/routes/guard/AuthGuard';
 import { LoginComponent } from './view/user/login/login.component';
+import { NotFoundComponent } from './layout/pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,6 +41,9 @@ const routes: Routes = [
   { path: 'servicos', component: ServiceListComponent, canActivate: [AuthGuard] },
   { path: 'servicos/novo', component: ServiceCreateComponent, canActivate: [AuthGuard] },
   { path: 'servicos/editar/:id', component: ServiceCreateComponent, canActivate: [AuthGuard] },
+
+  // Not Found
+  { path: '**', component: NotFoundComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

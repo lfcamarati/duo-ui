@@ -1,35 +1,39 @@
-<h1 class="page-title">Login</h1>
+<div class="card">
+  <div class="flex flex-column flex-wrap align-items-center card-container">
+    <h1 class="page-title w-2">Acesso ao sistema</h1>
 
-<form [formGroup]="loginForm" (submit)="login()">
-  <div class="grid-nogutter">
-    <div class="field col-6 p-float-label p-input-filled">
-      <input 
-        pInputText 
-        type="text" 
-        formControlName="username" 
-        class="w-full border-round"> 
-      <label for="name">Usuário</label>
-    </div>
+    <form [formGroup]="loginForm" (submit)="login()" class="w-2">
+      <div class="grid-nogutter">
+        <div class="field col p-float-label p-input-filled">
+          <input 
+            pInputText 
+            type="text" 
+            formControlName="username" 
+            class="w-full border-round"> 
+          <label for="name">Usuário</label>
+        </div>
 
-    <div class="field col-6 p-float-label p-input-filled">
-      <input 
-        pInputText 
-        type="text" 
-        formControlName="password" 
-        class="w-full border-round"> 
-      <label for="name">Senha</label>
-    </div>
+        <div class="field col p-float-label p-input-filled">
+          <input 
+            pInputText 
+            type="password" 
+            formControlName="password" 
+            class="w-full border-round"> 
+          <label for="name">Senha</label>
+        </div>
+      </div>
+
+      <p-divider></p-divider>
+
+      <div class="flex">
+        <button 
+          pButton
+          [disabled]="!loginForm.valid"
+          class="flex-initial flex m-1 btn-novo" 
+          type="submit" 
+          label="Acessar" 
+        ></button>
+      </div>
+    </form>
   </div>
-
-  <p-divider></p-divider>
-
-  <div class="flex">
-    <button 
-      pButton
-      [disabled]="!loginForm.valid"
-      class="flex-initial flex m-1 btn-novo" 
-      type="submit" 
-      label="Acessar" 
-    ></button>
-  </div>
-</form>
+</div>

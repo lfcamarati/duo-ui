@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResolveStart, Router } from '@angular/router';
-import { BehaviorSubject, catchError, finalize, map, Observable, of, switchMap, take, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { TokenJwt } from '../domain/TokenJwt';
-import { User } from '../domain/User';
 import { UserLogin } from '../domain/UserLogin';
 
 @Injectable({

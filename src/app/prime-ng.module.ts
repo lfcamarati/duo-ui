@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TabViewModule } from 'primeng/tabview';
+import { BlockUIModule } from 'primeng/blockui';
 
 const modules = [
   CommonModule,
@@ -25,7 +26,8 @@ const modules = [
   ToastModule,
   InputNumberModule,
   InputTextareaModule,
-  TabViewModule
+  TabViewModule,
+  BlockUIModule
 ]
 
 @NgModule({
