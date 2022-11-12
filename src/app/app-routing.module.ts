@@ -28,14 +28,17 @@ const routes: Routes = [
     { path: 'pf', component: ClientpfCreateComponent, canActivate: [AuthGuard] },
     { path: 'pj', component: ClientpjCreateComponent, canActivate: [AuthGuard] }
   ] },
-  { path: 'clientes/editar', component: ClientEditComponent, canActivate: [AuthGuard], children: [
-    { path: 'pf/:id', component: ClientpfCreateComponent, canActivate: [AuthGuard] },
-    { path: 'pj/:id', component: ClientpjCreateComponent, canActivate: [AuthGuard] }
+  { path: 'clientes/:id/editar', component: ClientEditComponent, canActivate: [AuthGuard], children: [
+    { path: 'pf', component: ClientpfCreateComponent, canActivate: [AuthGuard] },
+    { path: 'pj', component: ClientpjCreateComponent, canActivate: [AuthGuard] }
   ] },
-  { path: 'clientes/detalhes', component: ClientDetailsComponent, canActivate: [AuthGuard], children: [
-    { path: 'pf/:id', component: ClientpfDetailsComponent, canActivate: [AuthGuard] },
-    { path: 'pj/:id', component: ClientpjDetailsComponent, canActivate: [AuthGuard] }
+  { path: 'clientes/:id', component: ClientDetailsComponent, canActivate: [AuthGuard], children: [
+    { path: 'detalhes/pf', component: ClientpfDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'detalhes/pj', component: ClientpjDetailsComponent, canActivate: [AuthGuard] }
   ] },
+
+  // Contracts
+  // { path: 'contracts', component: ContractCreateComponent, canActivate: [AuthGuard] },
 
   // Services
   { path: 'servicos', component: ServiceListComponent, canActivate: [AuthGuard] },

@@ -41,7 +41,7 @@ export class ClientpfCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe( paramMap => {
+    this.activatedRoute.parent?.paramMap.subscribe( paramMap => {
       let idParam = paramMap.get('id');
 
       if (idParam) {

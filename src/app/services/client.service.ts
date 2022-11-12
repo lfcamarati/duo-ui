@@ -16,4 +16,8 @@ export class ClientService {
   getAll(): Observable<ResponseDataCollection<Client>> {
     return this.http.get<ResponseDataCollection<Client>>('/clients');
   }
+
+  getById(id: number): Observable<Client> {
+    return this.http.get<Client>(`/clients/${id}`)
+  }
 }
