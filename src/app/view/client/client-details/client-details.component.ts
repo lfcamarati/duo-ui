@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/domain/Client';
+import { Contract } from 'src/app/domain/Contract';
 import { ClientService } from 'src/app/services/client.service';
+import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
   selector: 'app-client-details',
@@ -11,23 +13,30 @@ import { ClientService } from 'src/app/services/client.service';
 export class ClientDetailsComponent implements OnInit {
 
   client?: Client
-  tabIndex: number = 0
+  contracts: Contract[] = []
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
+    private contractService: ContractService,
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.firstChild?.url.subscribe((path) => {
-      this.tabIndex = (path[0].path === 'pj' || path[0].path === 'pf') ? 0 : 1;
-     });
-
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const clientId = parseInt(paramMap.get('id')!);
-      this.clientService.getById(clientId).subscribe((client) => this.client = client)
-    })
+      this.findClient(clientId);
+      this.findContracts(clientId);
+    });
+  }
+
+  private findClient(clientId: number): void {
+    this.clientService.getById(clientId).subscribe((client) => this.client = client)
+  }
+
+  private findContracts(clientId: number): void {
+    this.contractService.getByClient(clientId).subscribe(contracts => 
+      this.contracts = contracts.data);
   }
 
   back() {

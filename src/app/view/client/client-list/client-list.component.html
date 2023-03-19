@@ -13,6 +13,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th><b>Nome</b></th>
+        <th><b>CPF/CNPJ</b></th>
         <th><b>Tipo</b></th>
         <th [width]="50"></th>
         <th [width]="50"></th>
@@ -22,6 +23,7 @@
     <ng-template pTemplate="body" let-client>
       <tr>
         <td>{{client.name}}</td>
+        <td>{{client.cpfCnpj | cpfCnpj}}</td>
         <td>{{client.type}}</td>
         <td>
           <a href="javascript:void(0)" (click)="view(client)">

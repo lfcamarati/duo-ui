@@ -1,6 +1,12 @@
 export interface Service {
   id?: number|null
-  title: string
-  description?: string
+  name: string
+  type: ServiceType
+  description: string
   price: number
+}
+
+export enum ServiceType {
+  NORMAL = 'NORMAL', 
+  SOCIAL_MEDIA_MANAGEMENT = 'SOCIAL_MEDIA_MANAGEMENT'
 }

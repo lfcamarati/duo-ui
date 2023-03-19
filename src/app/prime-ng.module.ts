@@ -13,6 +13,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TabViewModule } from 'primeng/tabview';
 import { BlockUIModule } from 'primeng/blockui';
+import { BadgeModule } from 'primeng/badge';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 const modules = [
   CommonModule,
@@ -27,7 +29,9 @@ const modules = [
   InputNumberModule,
   InputTextareaModule,
   TabViewModule,
-  BlockUIModule
+  BlockUIModule,
+  BadgeModule,
+  SplitButtonModule
 ]
 
 @NgModule({

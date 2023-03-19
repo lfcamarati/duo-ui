@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Service } from 'src/app/domain/Service';
+import { of } from 'rxjs';
+import { Service, ServiceType } from 'src/app/domain/Service';
 import { ServiceService } from 'src/app/services/service.service';
 
 export interface CreateServiceInput {
   id?: number|null
-  title?: string|null
+  name?: string|null
   description?: string|null
   price?: number|null
 }
@@ -18,14 +19,15 @@ export interface CreateServiceInput {
   styleUrls: ['./service-create.component.css']
 })
 export class ServiceCreateComponent implements OnInit {
+  count$ = of(NaN)
 
   createServiceForm = new FormGroup({
     id: new FormControl<number|null>(null),
-    title: new FormControl<string|null>(null, [Validators.required]),
+    name: new FormControl<string|null>(null, [Validators.required]),
     description: new FormControl<string|null>(null, [Validators.required]),
     price: new FormControl<number|null>(null, [Validators.required])
   });
-
+  
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -48,7 +50,7 @@ export class ServiceCreateComponent implements OnInit {
       next: (data) => {
         this.createServiceForm.patchValue({
           id: data.id,
-          title: data.title,
+          name: data.name,
           description: data.description,
           price: data.price
         });
@@ -60,7 +62,8 @@ export class ServiceCreateComponent implements OnInit {
     let createServiceInput: CreateServiceInput = this.createServiceForm.value;
     let service: Service = {
       id: createServiceInput.id,
-      title: createServiceInput.title!,
+      type: ServiceType.NORMAL,
+      name: createServiceInput.name!,
       description: createServiceInput.description!,
       price: createServiceInput.price!
     }

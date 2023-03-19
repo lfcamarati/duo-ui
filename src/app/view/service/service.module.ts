@@ -5,11 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from 'src/app/prime-ng.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ServiceCreateComponent } from './service-create/service-create.component';
+import { SocialMediaManagementCreateComponent } from './social-media-management-create/social-media-management-create.component';
 
 @NgModule({
   declarations: [
     ServiceListComponent,
-    ServiceCreateComponent
+    ServiceCreateComponent,
+    SocialMediaManagementCreateComponent
   ],
   imports: [
     CommonModule,

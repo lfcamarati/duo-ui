@@ -12,6 +12,17 @@ import { ServiceService } from 'src/app/services/service.service';
 export class ServiceListComponent implements OnInit {
 
   services: Service[] = []
+  newButtonOptions = [{
+    label: 'Gestão de Mídia Social', 
+    command: () => {
+      this.newSocialMediaManagement();
+    }
+  }, {
+    label: 'Serviço', 
+    command: () => {
+      this.newService();
+    }
+  }]
 
   constructor(
     private router: Router,
@@ -27,8 +38,12 @@ export class ServiceListComponent implements OnInit {
     });
   }
 
-  novo(): void {
+  newService(): void {
     this.router.navigateByUrl('/servicos/novo');
+  }
+  
+  newSocialMediaManagement(): void {
+    this.router.navigateByUrl('/gestao-rede-social/novo');
   }
 
   edit(service: Service): void {

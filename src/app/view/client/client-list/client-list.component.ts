@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Client } from 'src/app/domain/Client';
 import { ClientService } from 'src/app/services/client.service';
-import { ClientPfService } from 'src/app/services/clientPf.service';
-import { ClientPjService } from 'src/app/services/clientPj.service';
 
 @Component({
   selector: 'app-client-list',
@@ -19,8 +17,6 @@ export class ClientListComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private clientService: ClientService,
-    private clientPfService: ClientPfService,
-    private clientPjService: ClientPjService
   ) { }
 
   ngOnInit(): void {
@@ -36,36 +32,19 @@ export class ClientListComponent implements OnInit {
   }
 
   view(client: Client): void {
-    if (client.type === 'PF') {
-      this.router.navigate([`clientes/${client.id}/detalhes/pf`]);
-    } else {
-      this.router.navigate([`clientes/${client.id}/detalhes/pj`]);
-    }
+    this.router.navigate([`clientes/${client.id}/detalhes`]);
   }
 
   edit(client: Client): void {
-    if (client.type === 'PF') {
-      this.router.navigateByUrl(`/clientes/${client.id}/editar/pf`);
-    } else {
-      this.router.navigateByUrl(`/clientes/${client.id}/editar/pj`);
-    }
+    this.router.navigateByUrl(`/clientes/${client.id}/editar`);
   }
 
   delete(client: Client): void {
-    if (client.type === 'PF') {
-      this.clientPfService.delete(client.id).subscribe({
-        next: () => {
-          this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
-          this.ngOnInit();
-        }
-      })
-    } else {
-      this.clientPjService.delete(client.id).subscribe({
-        next: () => {
-          this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
-          this.ngOnInit();
-        }
-      })
-    }
+    this.clientService.delete(client.id!).subscribe({
+      next: () => {
+        this.messageService.add({severity:'success', detail: "Cliente removido com sucesso!"})
+        this.ngOnInit();
+      }
+    })
   }
 }

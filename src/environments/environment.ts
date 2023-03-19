@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080'
+  // baseUrl: 'http://duo-teste.ddns.net/api'
+  baseUrl: 'http://localhost:8080/api'
 };
 
 /*

@@ -1,15 +1,105 @@
 <h1 class="page-title">Novo cliente</h1>
 
 <p-card>
-  <div class="field">
-    <p-selectButton 
-      [options]="tipos" 
-      [(ngModel)]="tipo"
-      (ngModelChange)="updateTipo()"
-      optionValue="tipo" 
-      optionLabel="descricao"
-    ></p-selectButton>
-  </div>
+  <form [formGroup]="createClientForm" (submit)="salvar()">
+    <h5>Dados Básicos</h5>
 
-  <router-outlet></router-outlet>
+    <div class="field">
+      <p-selectButton 
+        [options]="tipos" 
+        formControlName="type"
+        optionValue="tipo" 
+        optionLabel="descricao"
+      ></p-selectButton>
+    </div>
+
+    <div class="grid-nogutter">
+      <div class="field col-6 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          id="name" 
+          type="text" 
+          formControlName="name"
+          class="w-full border-round"> 
+        <label for="name">Nome</label>
+      </div>
+  
+      <div *ngIf="isPf()" class="field col-2 p-float-label p-input-filled">
+        <p-inputMask 
+          id="cpfCnpj" 
+          formControlName="cpfCnpj"
+          mask="999.999.999-99"
+          [unmask]="true" 
+          styleClass="w-full border-round"
+        ></p-inputMask>
+        <label for="cpf">CPF</label>
+      </div>
+
+      <div *ngIf="isPj()" class="field col-2 p-float-label p-input-filled">
+        <p-inputMask 
+          id="cpfCnpj" 
+          formControlName="cpfCnpj"
+          mask="99.999.999/9999-99"
+          [unmask]="true" 
+          styleClass="w-full border-round"
+        ></p-inputMask>
+        <label for="cpf">CNPJ</label>
+      </div>
+      
+      <div class="field col-6 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          formControlName="address" 
+          id="address" 
+          type="text" 
+          class="w-full border-round">
+        <label for="address">Endereço</label>
+      </div>
+    </div>
+  
+    <h5>Contatos</h5>
+  
+    <div class="grid-nogutter">
+      <div class="field col-3 p-float-label p-input-filled">
+        <p-inputMask 
+          formControlName="phone" 
+          id="phone" 
+          mask="(99) 99999-9999"
+          [unmask]="true"
+          styleClass="w-full border-round"
+        ></p-inputMask>
+        <label for="phone">Telefone</label>
+      </div>
+  
+      <span class="field col-3 p-float-label p-input-filled">
+        <input 
+          pInputText 
+          formControlName="email" 
+          id="email" 
+          type="text" 
+          class="w-full border-round">
+        <label for="email">E-mail</label>
+      </span>
+    </div>
+  
+    <p-divider></p-divider>
+  
+    <div class="flex">
+      <button 
+        pButton
+        [disabled]="!createClientForm.valid"
+        class="flex-initial flex m-1 btn-novo" 
+        type="submit" 
+        label="Salvar" 
+      ></button>
+  
+      <button 
+        pButton 
+        class="flex-initial flex m-1 btn-novo p-button-outlined" 
+        type="button" 
+        label="Cancelar" 
+        (click)="cancelar()"
+      ></button>
+    </div>
+  </form>
 </p-card>
