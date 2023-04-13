@@ -21,6 +21,20 @@ import { LoginComponent } from './view/user/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './layout/pages/not-found/not-found.component';
 
+// Store
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// Reducers
+import { reducers } from './store/reducers';
+
+// Effects
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/auth/auth.effects';
+
+// Env
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +49,14 @@ import { NotFoundComponent } from './layout/pages/not-found/not-found.component'
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([
+      AuthEffects
+    ]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     AppRoutingModule,
     PrimeNGModule,
     ClientModule,

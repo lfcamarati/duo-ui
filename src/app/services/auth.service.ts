@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { TokenJwt } from '../domain/TokenJwt';
 import { UserLogin } from '../domain/UserLogin';
 
@@ -10,7 +10,7 @@ import { UserLogin } from '../domain/UserLogin';
 })
 export class AuthService {
 
-  private _statusLogged = new BehaviorSubject(false)
+  // private _statusLogged = new BehaviorSubject(false)
 
   constructor(
     private router: Router,
@@ -18,38 +18,32 @@ export class AuthService {
   ) {}
 
   login(user: UserLogin) {
-    return this.http.post<TokenJwt>('/auth', user).pipe(
-      tap(res => {
-        localStorage.setItem('token', res.token);
-        this._statusLogged.next(true);
-        this.router.navigate(['/dashboard']);
-      })
-    );
+    return this.http.post<TokenJwt>('/auth', user);
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this._statusLogged.next(false);
-    this.router.navigate(['/login']);
-  }
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   // this._statusLogged.next(false);
+  //   this.router.navigate(['/login']);
+  // }
 
   checkAccess(): Observable<void> {
     return this.http.get<void>('/auth').pipe(
       map(() => {
-        this._statusLogged.next(true);
+        // this._statusLogged.next(true);
       }),
       catchError((error) => {
-        this._statusLogged.next(false);
+        // this._statusLogged.next(false);
         return throwError(() => new Error(error))
       })
     );
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
+  // getToken(): string | null {
+  //   return localStorage.getItem('token');
+  // }
 
-  logged(): Observable<boolean> {
-    return this._statusLogged.asObservable()
-  }
+  // logged(): Observable<boolean> {
+  //   return this._statusLogged.asObservable()
+  // }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { delay, Observable } from 'rxjs';
 import { OverlayService } from './infra/http/overlay.service';
 import { AuthService } from './services/auth.service';
+import { Store, select } from '@ngrx/store';
+import { selectIsLogged } from './store/auth/auth.selectors';
+import { AuthState } from './store/auth/auth.reducer';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +13,15 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  isLogged?: Observable<boolean>;
+  isLogged$: Observable<boolean> = this.store.pipe(select(selectIsLogged));
   loading: boolean = false
 
   constructor(
-    private authService: AuthService,
-    private overlayService: OverlayService
+    private store: Store<AuthState>,
+    private overlayService: OverlayService,
   ) {}
 
   ngOnInit() {
-    this.isLogged = this.authService.logged();
     this.listenToLoading();
   }
 

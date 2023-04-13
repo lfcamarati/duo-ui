@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { logout } from 'src/app/store/auth/auth.actions';
+import { AuthState } from 'src/app/store/auth/auth.reducer';
+import { selectIsLogged, selectLogoutSuccess } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-topbar',
@@ -9,17 +14,25 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TopbarComponent implements OnInit {
 
-  isLogged?: Observable<boolean>;
+  isLogged$ = this.store.pipe(select(selectIsLogged));
+  logoutSuccess$: Observable<boolean> = this.store.pipe(select(selectLogoutSuccess));
 
   constructor(
-    private authService: AuthService
-  ) { }
+    // private authService: AuthService,
+    private router: Router,
+    private store: Store<AuthState>,
+  ) {}
 
   ngOnInit(): void {
-    this.isLogged = this.authService.logged();
+    this.isLogged$.subscribe((isLogged) => {
+      if (!isLogged) {
+        this.router.navigate(['/login']);
+      }
+    })
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(logout());
+    // this.authService.logout();
   }
 }
