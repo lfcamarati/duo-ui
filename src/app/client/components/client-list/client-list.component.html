@@ -44,20 +44,20 @@
           <td>{{ client.cpfCnpj | cpfCnpj }}</td>
           <td>{{ client.type }}</td>
           <td>
-            <a href="javascript:void(0)" (click)="view(client)">
+            <a href="javascript:void(0)" (click)="onView(client)">
               <span class="icon"><i class="pi pi-eye"></i></span>
             </a>
           </td>
           <td>
-            <a href="javascript:void(0)" (click)="edit(client)">
+            <a href="javascript:void(0)" (click)="onEdit(client)">
               <span class="icon"><i class="pi pi-file-edit"></i></span>
             </a>
           </td>
           <td>
             <a
+              (click)="onDelete(client)"
+              href="javascript:void(0);"
               class="btn-remover"
-              href="javascript:void(0)"
-              (click)="delete(client)"
             >
               <span class="icon"><i class="pi pi-trash"></i></span>
             </a>

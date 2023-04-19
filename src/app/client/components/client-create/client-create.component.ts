@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
 import {MessageService} from 'primeng/api'
 import {ClientService} from '../../services/client.service'
-import {Client} from '../../types/Client'
+import {Client} from '../../types/client.interface'
 
 export interface TipoCliente {
   tipo: string

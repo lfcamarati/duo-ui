@@ -1,4 +1,4 @@
-import {Client} from './Client'
+import {Client} from './client.interface'
 
 export interface ClientStateInterface {
   clients: Client[]

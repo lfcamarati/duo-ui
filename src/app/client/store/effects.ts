@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
-import {EMPTY, catchError, map, mergeMap} from 'rxjs'
+import {MessageService} from 'primeng/api'
+import {EMPTY, catchError, exhaustMap, map, mergeMap, tap} from 'rxjs'
 import {ClientService} from '../services/client.service'
 import * as ClientActions from './actions'
 
@@ -18,8 +19,34 @@ export class ClientEffects {
     )
   )
 
+  deleteClient$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ClientActions.deleteClient),
+      exhaustMap((action) =>
+        this.clientService
+          .delete(action.clientId)
+          .pipe(map(() => ClientActions.deleteClientSuccess(action.clientId)))
+      )
+    )
+  )
+
+  deleteClientSuccessNotification$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ClientActions.deleteClientSuccess),
+        tap(() => {
+          this.messageService.add({
+            severity: 'success',
+            detail: 'Cliente removido com sucesso!',
+          })
+        })
+      ),
+    {dispatch: false}
+  )
+
   constructor(
     private actions$: Actions,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private messageService: MessageService
   ) {}
 }

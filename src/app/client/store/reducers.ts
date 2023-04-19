@@ -12,5 +12,11 @@ export const reducers = createReducer(
   on(ClientActions.getClientsSuccess, (state, action) => ({
     ...state,
     clients: action.clients,
+  })),
+
+  on(ClientActions.deleteClient, (state) => ({...state})),
+  on(ClientActions.deleteClientSuccess, (state, action) => ({
+    ...state,
+    clients: state.clients.filter((client) => client.id !== action.clientId),
   }))
 )

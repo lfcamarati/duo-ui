@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {Contract} from 'src/app/core/domain/Contract'
 import {ContractService} from 'src/app/core/services/contract.service'
 import {ClientService} from '../../services/client.service'
-import {Client} from '../../types/Client'
+import {Client} from '../../types/client.interface'
 
 @Component({
   selector: 'app-client-details',

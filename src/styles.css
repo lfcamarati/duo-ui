@@ -18,3 +18,7 @@ h1.page-title {
   color: rgb(60, 54, 95);
   margin-bottom: 1rem;
 }
+
+.p-progress-spinner-circle {
+  stroke: blue !important;
+}

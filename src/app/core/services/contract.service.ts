@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable, of} from 'rxjs'
-import {ListResponse} from '../../shared/types/ListResponse'
+import {ListResponse} from '../../shared/types/listResponse.interface'
 import {Contract} from '../domain/Contract'
 
 @Injectable({

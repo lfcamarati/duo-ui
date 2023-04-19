@@ -10,6 +10,7 @@ import {InputMaskModule} from 'primeng/inputmask'
 import {InputNumberModule} from 'primeng/inputnumber'
 import {InputTextModule} from 'primeng/inputtext'
 import {InputTextareaModule} from 'primeng/inputtextarea'
+import {ProgressSpinnerModule} from 'primeng/progressspinner'
 import {SelectButtonModule} from 'primeng/selectbutton'
 import {SplitButtonModule} from 'primeng/splitbutton'
 import {TableModule} from 'primeng/table'
@@ -32,6 +33,7 @@ const modules = [
   BlockUIModule,
   BadgeModule,
   SplitButtonModule,
+  ProgressSpinnerModule,
 ]
 
 @NgModule({

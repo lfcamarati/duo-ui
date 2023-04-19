@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable} from 'rxjs'
 import {Message} from '../../core/domain/Message'
-import {ListResponse} from '../../shared/types/ListResponse'
-import {Client} from '../types/Client'
+import {ListResponse} from '../../shared/types/listResponse.interface'
+import {Client} from '../types/client.interface'
 
 @Injectable()
 export class ClientService {
