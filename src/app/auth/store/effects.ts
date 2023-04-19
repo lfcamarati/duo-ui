@@ -10,8 +10,8 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActions.login),
-      exhaustMap((state) =>
-        this.authService.login(state.userLogin).pipe(
+      exhaustMap((action) =>
+        this.authService.login(action.userLogin).pipe(
           map((tokenJwt: TokenJwt) => AuthActions.loginSuccess(tokenJwt.token)),
           catchError((error) =>
             of(AuthActions.loginFailure(error.error.message))

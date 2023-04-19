@@ -1,5 +1,5 @@
 export interface Client {
-  id?: number|null
+  id?: number | null
   name: string
   cpfCnpj: string
   address: string

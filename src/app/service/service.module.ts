@@ -1,27 +1,25 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ServiceListComponent } from './service-list/service-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrimeNGModule } from 'src/app/prime-ng.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { ServiceCreateComponent } from './service-create/service-create.component';
-import { SocialMediaManagementCreateComponent } from './social-media-management-create/social-media-management-create.component';
+import {CommonModule} from '@angular/common'
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {AppRoutingModule} from 'src/app/app-routing.module'
+import {PrimeNGModule} from 'src/app/prime-ng.module'
+import {ServiceCreateComponent} from './components/service-create/service-create.component'
+import {ServiceListComponent} from './components/service-list/service-list.component'
+import {SocialMediaManagementCreateComponent} from './components/social-media-management-create/social-media-management-create.component'
 
 @NgModule({
   declarations: [
     ServiceListComponent,
     ServiceCreateComponent,
-    SocialMediaManagementCreateComponent
+    SocialMediaManagementCreateComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    PrimeNGModule
+    PrimeNGModule,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ServiceModule { }
+export class ServiceModule {}

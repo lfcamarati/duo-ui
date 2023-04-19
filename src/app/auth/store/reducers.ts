@@ -38,16 +38,21 @@ export function tokenStorageMetaReducer(
   return function (state: AuthStateInterface, action: any): any {
     const nextState = reducer(state, action)
 
-    // TODO Solução temporária para tratar o token no localStorage\
+    // TODO Solução temporária para tratar o token no localStorage
+
     if (action.type === AuthActions.loginSuccess.type) {
       if (nextState.token) {
         localStorage.setItem('token', nextState.token)
       }
     }
 
+    // TODO Solução temporária para tratar o token no localStorage
+
     if (action.type === AuthActions.logoutSuccess.type) {
       localStorage.removeItem('token')
     }
+
+    // TODO Solução temporária para tratar o token no localStorage
 
     return nextState
   }
