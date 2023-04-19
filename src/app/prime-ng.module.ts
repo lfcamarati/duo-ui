@@ -1,20 +1,20 @@
-import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
+import {NgModule} from '@angular/core'
 
+import {BadgeModule} from 'primeng/badge'
+import {BlockUIModule} from 'primeng/blockui'
 import {ButtonModule} from 'primeng/button'
 import {CardModule} from 'primeng/card'
-import {TableModule} from 'primeng/table'
-import {InputTextModule} from 'primeng/inputtext'
 import {DividerModule} from 'primeng/divider'
-import {SelectButtonModule} from 'primeng/selectbutton'
 import {InputMaskModule} from 'primeng/inputmask'
-import {ToastModule} from 'primeng/toast'
 import {InputNumberModule} from 'primeng/inputnumber'
+import {InputTextModule} from 'primeng/inputtext'
 import {InputTextareaModule} from 'primeng/inputtextarea'
-import {TabViewModule} from 'primeng/tabview'
-import {BlockUIModule} from 'primeng/blockui'
-import {BadgeModule} from 'primeng/badge'
+import {SelectButtonModule} from 'primeng/selectbutton'
 import {SplitButtonModule} from 'primeng/splitbutton'
+import {TableModule} from 'primeng/table'
+import {TabViewModule} from 'primeng/tabview'
+import {ToastModule} from 'primeng/toast'
 
 const modules = [
   CommonModule,

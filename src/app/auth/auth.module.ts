@@ -1,13 +1,13 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {LoginComponent} from './components/login/login.component'
-import {PrimeNGModule} from '../prime-ng.module'
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core'
 import {ReactiveFormsModule} from '@angular/forms'
-import {StoreModule} from '@ngrx/store'
-import {reducers} from './store/reducers'
 import {EffectsModule} from '@ngrx/effects'
-import {AuthEffects} from './store/effects'
+import {StoreModule} from '@ngrx/store'
+import {PrimeNGModule} from '../prime-ng.module'
+import {LoginComponent} from './components/login/login.component'
 import {AuthService} from './services/auth.service'
+import {AuthEffects} from './store/effects'
+import {metaReducers, reducers} from './store/reducers'
 
 @NgModule({
   declarations: [LoginComponent],
@@ -15,7 +15,9 @@ import {AuthService} from './services/auth.service'
     CommonModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    StoreModule.forFeature('auth', reducers),
+    StoreModule.forFeature('auth', reducers, {
+      metaReducers,
+    }),
     EffectsModule.forFeature([AuthEffects]),
   ],
   providers: [AuthService],

@@ -1,12 +1,6 @@
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpResponse,
-} from '@angular/common/http'
+import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import {Injectable} from '@angular/core'
-import {catchError, finalize, map, Observable} from 'rxjs'
+import {Observable, finalize} from 'rxjs'
 import {OverlayService} from '../overlay.service'
 
 @Injectable()

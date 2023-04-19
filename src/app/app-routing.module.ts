@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
+import {LoginComponent} from './auth/components/login/login.component'
 import {ClientCreateComponent} from './client/client-create/client-create.component'
+import {ClientDetailsComponent} from './client/client-details/client-details.component'
 import {ClientListComponent} from './client/client-list/client-list.component'
 import {DashboardComponent} from './home/components/dashboard/dashboard.component'
-import {ServiceListComponent} from './service/service-list/service-list.component'
-import {ServiceCreateComponent} from './service/service-create/service-create.component'
-import {ClientDetailsComponent} from './client/client-details/client-details.component'
-import {AuthGuard} from './shared/http/routes/guard/AuthGuard'
-import {LoginComponent} from './auth/components/login/login.component'
-import {SocialMediaManagementCreateComponent} from './service/social-media-management-create/social-media-management-create.component'
 import {NotFoundComponent} from './layout/components/not-found/not-found.component'
+import {ServiceCreateComponent} from './service/service-create/service-create.component'
+import {ServiceListComponent} from './service/service-list/service-list.component'
+import {SocialMediaManagementCreateComponent} from './service/social-media-management-create/social-media-management-create.component'
+import {AuthGuard} from './shared/http/routes/guard/AuthGuard'
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

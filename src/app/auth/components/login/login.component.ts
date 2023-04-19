@@ -2,12 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core'
 import {FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
-import {Observable, Subscription} from 'rxjs'
-import * as AuthActions from '../../store/actions'
-import {UserLogin} from '../../types/userLogin.interface'
-import {errorSelector, isLoggedSelector} from '../../store/selectors'
-import {AppStateInterface} from 'src/app/types/appState.interface'
 import {MessageService} from 'primeng/api'
+import {Observable, Subscription} from 'rxjs'
+import {AppStateInterface} from 'src/app/types/appState.interface'
+import * as AuthActions from '../../store/actions'
+import {errorSelector, isLoggedSelector} from '../../store/selectors'
+import {UserLogin} from '../../types/userLogin.interface'
 
 @Component({
   selector: 'app-login',
