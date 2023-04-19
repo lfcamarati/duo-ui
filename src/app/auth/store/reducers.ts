@@ -10,7 +10,7 @@ export const initialState: AuthStateInterface = {
 export const reducers = createReducer(
   initialState,
   // login
-  on(AuthActions.login, (state) => ({...state})),
+  on(AuthActions.login, (state) => ({...state, error: null})),
   on(AuthActions.loginSuccess, (state, action) => ({
     ...state,
     token: action.token,
