@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {EffectsModule} from '@ngrx/effects'
 import {StoreModule} from '@ngrx/store'
 import {PrimeNGModule} from '../prime-ng.module'
+import {AuthRoutingModule} from './auth-routing.module'
 import {LoginComponent} from './components/login/login.component'
 import {AuthService} from './services/auth.service'
 import {AuthEffects} from './store/effects'
@@ -13,6 +14,7 @@ import {metaReducers, reducers} from './store/reducers'
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
     PrimeNGModule,
     StoreModule.forFeature('auth', reducers, {

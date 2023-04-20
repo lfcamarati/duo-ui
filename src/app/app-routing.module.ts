@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
-import {LoginComponent} from './auth/components/login/login.component'
 import {ClientCreateComponent} from './client/components/client-create/client-create.component'
 import {ClientDetailsComponent} from './client/components/client-details/client-details.component'
 import {ClientListComponent} from './client/components/client-list/client-list.component'
@@ -12,11 +11,8 @@ import {SocialMediaManagementCreateComponent} from './service/components/social-
 import {AuthGuard} from './shared/http/routes/guard/AuthGuard'
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
-
-  // User
-  {path: 'login', component: LoginComponent},
 
   // Clients
   {path: 'clientes', component: ClientListComponent, canActivate: [AuthGuard]},
@@ -56,8 +52,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  // Not Found
-  {path: '**', component: NotFoundComponent, canActivate: [AuthGuard]},
+  // NotFound
+  {path: '404', component: NotFoundComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: '/404'},
 ]
 
 @NgModule({

@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoggedSubscription = this.isLogged$.subscribe((isLogged) => {
       isLogged
-        ? this.router.navigateByUrl('/home')
-        : this.router.navigateByUrl('/login')
+        ? this.router.navigate(['home'])
+        : this.router.navigate(['login'])
     })
 
     this.loginErrorSubscription = this.loginError$.subscribe((error) => {
