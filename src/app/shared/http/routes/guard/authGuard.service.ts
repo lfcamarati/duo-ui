@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core'
 import {CanActivate, Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
-import {Observable, map} from 'rxjs'
+import {Observable, mergeMap, of} from 'rxjs'
+import * as AuthActions from 'src/app/auth/store/actions'
 import {isLoggedSelector} from 'src/app/auth/store/selectors'
 import {AppStateInterface} from 'src/app/types/appState.interface'
 
 @Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate {
+export class AuthGuardService implements CanActivate {
   isLogged$: Observable<boolean>
 
   constructor(private store: Store<AppStateInterface>, private router: Router) {
@@ -14,14 +15,16 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean> {
+    this.store.dispatch(AuthActions.checkAccess())
+
     return this.isLogged$.pipe(
-      map((isLogged) => {
-        if (isLogged) {
-          return true
+      mergeMap((isLogged) => {
+        if (!isLogged) {
+          this.router.navigate(['login'])
+          return of(false)
         }
 
-        this.router.navigate(['login'])
-        return false
+        return of(true)
       })
     )
   }

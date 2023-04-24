@@ -28,5 +28,17 @@ export class AuthEffects {
     )
   )
 
+  checkAccess$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(AuthActions.checkAccess),
+      exhaustMap(() =>
+        this.authService.checkAccess().pipe(
+          map(() => AuthActions.checkAccessSuccess()),
+          catchError(() => of(AuthActions.checkAccessFailure()))
+        )
+      )
+    )
+  )
+
   constructor(private action$: Actions, private authService: AuthService) {}
 }

@@ -21,3 +21,4 @@ export const logoutSuccess = createAction('[Auth] Logout success')
 /* check access */
 export const checkAccess = createAction('[Auth] Check access')
 export const checkAccessSuccess = createAction('[Auth] Check access success')
+export const checkAccessFailure = createAction('[Auth] Check access failure')

@@ -8,52 +8,64 @@ import {NotFoundComponent} from './layout/components/not-found/not-found.compone
 import {ServiceCreateComponent} from './service/components/service-create/service-create.component'
 import {ServiceListComponent} from './service/components/service-list/service-list.component'
 import {SocialMediaManagementCreateComponent} from './service/components/social-media-management-create/social-media-management-create.component'
-import {AuthGuard} from './shared/http/routes/guard/AuthGuard'
+import {AuthGuardService} from './shared/http/routes/guard/authGuard.service'
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
+  {
+    path: 'home',
+    component: DashboardComponent,
+    canActivate: [AuthGuardService],
+  },
 
   // Clients
-  {path: 'clientes', component: ClientListComponent, canActivate: [AuthGuard]},
+  {
+    path: 'clientes',
+    component: ClientListComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'clientes/novo',
     component: ClientCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'clientes/:id/editar',
     component: ClientCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'clientes/:id/detalhes',
     component: ClientDetailsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
 
   // Services
-  {path: 'servicos', component: ServiceListComponent, canActivate: [AuthGuard]},
+  {
+    path: 'servicos',
+    component: ServiceListComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'servicos/novo',
     component: ServiceCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
   {
     path: 'servicos/editar/:id',
     component: ServiceCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
 
   // Social Media Management
   {
     path: 'gestao-rede-social/novo',
     component: SocialMediaManagementCreateComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuardService],
   },
 
   // NotFound
-  {path: '404', component: NotFoundComponent, canActivate: [AuthGuard]},
+  {path: '404', component: NotFoundComponent, canActivate: [AuthGuardService]},
   {path: '**', redirectTo: '/404'},
 ]
 
