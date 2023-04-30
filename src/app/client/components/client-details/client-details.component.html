@@ -1,26 +1,50 @@
 <p-card>
   <div class="flex justify-content-between">
-    <h1 class="page-title">{{client?.name}}</h1>
-    <button pButton class="m-1 p-button-outlined" type="button" label="Voltar" (click)="back()"></button>
+    <h1 class="page-title">{{ client?.name }}</h1>
+    <button
+      pButton
+      class="m-1 p-button-outlined"
+      type="button"
+      label="Voltar"
+      (click)="back()"
+    ></button>
   </div>
 
   <p-tabView>
     <p-tabPanel header="Informações">
       <h5>Dados Básicos</h5>
-  
+
       <div class="grid-nogutter">
         <div class="field col-6 p-float-label p-input-filled">
-          <input pInputText type="text" readonly [ngModel]="client?.name" class="w-full">
+          <input
+            pInputText
+            type="text"
+            readonly
+            [ngModel]="client?.name"
+            class="w-full"
+          />
           <label>Nome</label>
         </div>
 
         <div class="field col-2 p-float-label p-input-filled">
-          <input pInputText type="text" readonly [ngModel]="client?.cpfCnpj | cpfCnpj" class="w-full">
-          <label>{{client?.type === 'PF' ? 'CPF' : 'CNPJ'}}</label>
+          <input
+            pInputText
+            type="text"
+            readonly
+            [ngModel]="client?.cpfCnpj | cpfCnpj"
+            class="w-full"
+          />
+          <label>{{ client?.type === 'PF' ? 'CPF' : 'CNPJ' }}</label>
         </div>
 
         <div class="field col-6 p-float-label p-input-filled">
-          <input pInputText type="text" readonly [ngModel]="client?.address" class="w-full">
+          <input
+            pInputText
+            type="text"
+            readonly
+            [ngModel]="client?.address"
+            class="w-full"
+          />
           <label>Endereço</label>
         </div>
       </div>
@@ -29,17 +53,29 @@
 
       <div class="grid-nogutter">
         <div class="field col-3 p-float-label p-input-filled">
-          <input pInputText type="text" readonly [ngModel]="client?.email" class="w-full">
+          <input
+            pInputText
+            type="text"
+            readonly
+            [ngModel]="client?.email"
+            class="w-full"
+          />
           <label>E-mail</label>
         </div>
 
         <div class="field col-3 p-float-label p-input-filled">
-          <input pInputText type="text" readonly [ngModel]="client?.phone | phone" class="w-full">
+          <input
+            pInputText
+            type="text"
+            readonly
+            [ngModel]="client?.phone ?? null | phone"
+            class="w-full"
+          />
           <label>Telefone</label>
         </div>
       </div>
     </p-tabPanel>
-    
+
     <p-tabPanel header="Serviços contratados">
       <p>Serviços contratados!</p>
     </p-tabPanel>

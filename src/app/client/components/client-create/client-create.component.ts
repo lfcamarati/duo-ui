@@ -3,21 +3,11 @@ import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
 import {MessageService} from 'primeng/api'
 import {ClientService} from '../../services/client.service'
-import {Client} from '../../types/client.interface'
+import {Client, ClientType} from '../../types/client.interface'
 
-export interface TipoCliente {
-  tipo: string
-  descricao: string
-}
-
-export interface CreateClientCommand {
-  id?: number | null
-  name?: string | null
-  cpfCnpj?: string | null
-  address?: string | null
-  email?: string | null
-  phone?: string | null
-  type?: string | null
+export interface ClientTypes {
+  type: ClientType
+  description: string
 }
 
 @Component({
@@ -26,22 +16,28 @@ export interface CreateClientCommand {
   styleUrls: ['./client-create.component.css'],
 })
 export class ClientCreateComponent implements OnInit {
-  tipos: TipoCliente[] = [
-    {tipo: 'PF', descricao: 'Pessoa Física'},
-    {tipo: 'PJ', descricao: 'Pessoa Jurídica'},
+  tipos: ClientTypes[] = [
+    {type: 'PF', description: 'Pessoa Física'},
+    {type: 'PJ', description: 'Pessoa Jurídica'},
   ]
 
   createClientForm = new FormGroup({
     id: new FormControl<number | null>(null),
-    name: new FormControl<string | null>(null),
-    cpfCnpj: new FormControl<string | null>(null),
-    address: new FormControl<string | null>(null, [Validators.required]),
-    phone: new FormControl<string | null>(null, [Validators.required]),
-    email: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.email,
-    ]),
-    type: new FormControl<string | null>('PF', [Validators.required]),
+    name: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    cpfCnpj: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    address: new FormControl<string | null>(null),
+    phone: new FormControl<string | null>(null),
+    email: new FormControl<string | null>(null, [Validators.email]),
+    type: new FormControl<ClientType>('PF', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
   })
 
   constructor(
@@ -78,16 +74,7 @@ export class ClientCreateComponent implements OnInit {
   }
 
   salvar(): void {
-    let createClientCommand: CreateClientCommand = this.createClientForm.value
-    let client: Client = {
-      id: createClientCommand.id,
-      name: createClientCommand.name!,
-      cpfCnpj: createClientCommand.cpfCnpj!,
-      address: createClientCommand.address!,
-      email: createClientCommand.email!,
-      phone: createClientCommand.phone!,
-      type: createClientCommand.type!,
-    }
+    let client: Client = this.createClientForm.getRawValue()
 
     if (client.id) {
       this.clientService.update(client).subscribe({

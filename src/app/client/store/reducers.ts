@@ -8,12 +8,14 @@ export const inicialState: ClientStateInterface = {
 
 export const reducers = createReducer(
   inicialState,
+  // getClients
   on(ClientActions.getClients, (state) => ({...state})),
   on(ClientActions.getClientsSuccess, (state, action) => ({
     ...state,
     clients: action.clients,
   })),
 
+  // deleteClient
   on(ClientActions.deleteClient, (state) => ({...state})),
   on(ClientActions.deleteClientSuccess, (state, action) => ({
     ...state,

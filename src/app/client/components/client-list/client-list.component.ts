@@ -27,15 +27,15 @@ export class ClientListComponent implements OnInit {
     this.router.navigateByUrl('/clientes/novo')
   }
 
-  onView(client: Client): void {
+  view(client: Client): void {
     this.router.navigate([`clientes/${client.id}/detalhes`])
   }
 
-  onEdit(client: Client): void {
+  edit(client: Client): void {
     this.router.navigateByUrl(`/clientes/${client.id}/editar`)
   }
 
-  onDelete(client: Client): void {
+  delete(client: Client): void {
     this.store.dispatch(ClientActions.deleteClient(client.id!))
   }
 }

@@ -11,13 +11,6 @@
         placeholder="Filtrar"
         (input)="tblclientes.filterGlobal(filter.value, 'contains')"
       />
-      <button
-        pButton
-        class="m-1 btn-novo"
-        type="button"
-        label="Novo"
-        (click)="novo()"
-      ></button>
     </div>
 
     <p-table
@@ -44,18 +37,18 @@
           <td>{{ client.cpfCnpj | cpfCnpj }}</td>
           <td>{{ client.type }}</td>
           <td>
-            <a href="javascript:void(0)" (click)="onView(client)">
+            <a href="javascript:void(0)" (click)="view(client)">
               <span class="icon"><i class="pi pi-eye"></i></span>
             </a>
           </td>
           <td>
-            <a href="javascript:void(0)" (click)="onEdit(client)">
+            <a href="javascript:void(0)" (click)="edit(client)">
               <span class="icon"><i class="pi pi-file-edit"></i></span>
             </a>
           </td>
           <td>
             <a
-              (click)="onDelete(client)"
+              (click)="delete(client)"
               href="javascript:void(0);"
               class="btn-remover"
             >
@@ -66,4 +59,14 @@
       </ng-template>
     </p-table>
   </ng-container>
+
+  <p-divider></p-divider>
+
+  <button
+    pButton
+    class="m-1 btn-novo"
+    type="button"
+    label="Novo"
+    (click)="novo()"
+  ></button>
 </p-card>
