@@ -1,9 +1,9 @@
 import {CommonModule} from '@angular/common'
 import {NgModule} from '@angular/core'
 import {ClientService} from '../client/services/client.service'
-import {ServiceService} from './services/service.service'
+import {ServiceService} from '../service/services/service.service'
+import {UserService} from '../shared/services/user.service'
 import {SocialMediaManagementService} from './services/socialMediaManagement.service'
-import {UserService} from './services/user.service'
 
 @NgModule({
   declarations: [],

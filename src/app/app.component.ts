@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core'
 import {Store, select} from '@ngrx/store'
 import {Observable, delay} from 'rxjs'
 import {isLoggedSelector} from './auth/store/selectors'
-import {OverlayService} from './shared/http/overlay.service'
-import {AppStateInterface} from './types/appState.interface'
+import {OverlayService} from './shared/services/overlay.service'
+import {AppStateInterface} from './shared/types/appState.interface'
 
 @Component({
   selector: 'app-root',

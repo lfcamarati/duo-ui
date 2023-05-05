@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core'
 import {BehaviorSubject, Observable} from 'rxjs'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class OverlayService {
   private loadingMap: Map<string, boolean> = new Map<string, boolean>()
   private loadingSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(

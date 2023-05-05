@@ -4,7 +4,7 @@ import {Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import {Observable, Subject, takeUntil} from 'rxjs'
 import {MessagesService} from 'src/app/shared/services/messages.service'
-import {AppStateInterface} from 'src/app/types/appState.interface'
+import {AppStateInterface} from 'src/app/shared/types/appState.interface'
 import * as AuthActions from '../../store/actions'
 import {errorSelector, isLoggedSelector} from '../../store/selectors'
 import {UserLogin} from '../../types/userLogin.interface'
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLogged$.pipe(takeUntil(this.unsubscribe$)).subscribe((isLogged) => {
       isLogged
         ? this.router.navigate(['home'])
-        : this.router.navigate(['login'])
+        : this.router.navigate(['auth', 'login'])
     })
 
     this.loginError$.pipe(takeUntil(this.unsubscribe$)).subscribe((error) => {

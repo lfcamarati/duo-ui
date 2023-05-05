@@ -28,7 +28,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         error: (error) => {
           if (this.router.url === '/') {
             this.store.dispatch(AuthActions.logout())
-          } else if (error.status === 401 && this.router.url !== '/login') {
+          } else if (
+            error.status === 401 &&
+            this.router.url !== '/auth/login'
+          ) {
             this.messageService.add({
               severity: 'error',
               detail: 'Acesso negado!',

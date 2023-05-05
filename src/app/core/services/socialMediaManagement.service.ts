@@ -1,9 +1,9 @@
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable} from 'rxjs'
+import {Service} from '../../service/types/service.interface'
 import {ListResponse} from '../../shared/types/listResponse.interface'
 import {Message} from '../domain/Message'
-import {Service} from '../domain/Service'
 import {SocialMediaManagement} from '../domain/SocialMediaManagement'
 
 @Injectable({

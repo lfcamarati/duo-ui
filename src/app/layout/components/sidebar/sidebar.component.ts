@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
-import {map, Observable} from 'rxjs'
-import {UserService} from 'src/app/core/services/user.service'
+import {Observable, map} from 'rxjs'
+import {UserService} from 'src/app/shared/services/user.service'
 
 @Component({
   selector: 'app-sidebar',

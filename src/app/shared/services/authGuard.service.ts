@@ -4,9 +4,9 @@ import {Store, select} from '@ngrx/store'
 import {Observable, mergeMap, of} from 'rxjs'
 import * as AuthActions from 'src/app/auth/store/actions'
 import {isLoggedSelector} from 'src/app/auth/store/selectors'
-import {AppStateInterface} from 'src/app/types/appState.interface'
+import {AppStateInterface} from 'src/app/shared/types/appState.interface'
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class AuthGuardService implements CanActivate {
   isLogged$: Observable<boolean>
 
@@ -20,7 +20,7 @@ export class AuthGuardService implements CanActivate {
     return this.isLogged$.pipe(
       mergeMap((isLogged) => {
         if (!isLogged) {
-          this.router.navigate(['login'])
+          this.router.navigate(['auth', 'login'])
           return of(false)
         }
 

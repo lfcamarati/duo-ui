@@ -8,7 +8,7 @@ import {Injectable} from '@angular/core'
 import {Store, select} from '@ngrx/store'
 import {Observable, exhaustMap, take} from 'rxjs'
 import {tokenSelector} from 'src/app/auth/store/selectors'
-import {AppStateInterface} from 'src/app/types/appState.interface'
+import {AppStateInterface} from '../../types/appState.interface'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

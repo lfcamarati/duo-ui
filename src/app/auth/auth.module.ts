@@ -8,10 +8,11 @@ import {AuthRoutingModule} from './auth-routing.module'
 import {LoginComponent} from './components/login/login.component'
 import {AuthService} from './services/auth.service'
 import {AuthEffects} from './store/effects'
-import {metaReducers, reducers} from './store/reducers'
+import {metaReducers, reducers} from './store/reducers';
+import { AuthComponent } from './auth.component'
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, AuthComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

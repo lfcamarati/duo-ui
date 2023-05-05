@@ -36,12 +36,12 @@ import {httpInterceptorProviders} from './shared/http/interceptors'
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     PrimeNGModule,
+    AppRoutingModule,
     LayoutModule,
-    AuthModule,
     HomeModule,
+    AuthModule,
     ClientModule,
     ServiceModule,
-    AppRoutingModule,
   ],
   providers: [
     httpInterceptorProviders,

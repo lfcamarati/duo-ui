@@ -1,0 +1,66 @@
+<h1 class="page-title">Gestão de Rede Social - Novo plano</h1>
+
+<p-card>
+  <form [formGroup]="registerServiceForm" (submit)="save()">
+    <h5>Dados Básicos</h5>
+
+    <div class="grid-nogutter">
+      <div class="field col-6 p-float-label p-input-filled">
+        <textarea
+          pInputTextarea
+          formControlName="description"
+          id="description"
+          rows="5"
+          cols="100"
+          class="w-full border-round"
+          maxlength="255"
+        >
+        </textarea>
+        <label for="cpf">Descrição</label>
+      </div>
+
+      <div class="field col-6 p-float-label p-input-filled">
+        <p-selectButton
+          [options]="servicePeriodTypes"
+          formControlName="periodType"
+          optionLabel="name"
+          optionValue="type"
+        ></p-selectButton>
+      </div>
+
+      <div class="field col-2 p-float-label p-input-filled">
+        <p-inputNumber
+          inputId="price"
+          formControlName="price"
+          mode="decimal"
+          currency="BRL"
+          locale="pt-BR"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="2"
+        >
+        </p-inputNumber>
+        <label for="cpf">Valor</label>
+      </div>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="flex">
+      <button
+        pButton
+        [disabled]="!registerServiceForm.valid"
+        class="flex-initial flex m-1 btn-novo"
+        type="submit"
+        label="Salvar"
+      ></button>
+
+      <button
+        pButton
+        class="flex-initial flex m-1 btn-novo p-button-outlined"
+        type="button"
+        label="Cancelar"
+        (click)="cancel()"
+      ></button>
+    </div>
+  </form>
+</p-card>

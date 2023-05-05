@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 import {MessageService} from 'primeng/api'
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class MessagesService {
   showSuccess(detail: string): void {
     this.showMessage(detail, 'success')

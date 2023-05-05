@@ -3,7 +3,7 @@ import {Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import * as AuthActions from 'src/app/auth/store/actions'
 import {isLoggedSelector} from 'src/app/auth/store/selectors'
-import {AppStateInterface} from 'src/app/types/appState.interface'
+import {AppStateInterface} from 'src/app/shared/types/appState.interface'
 
 @Component({
   selector: 'app-topbar',
@@ -21,7 +21,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
     this.isLogged$.subscribe((isLogged) => {
       if (!isLogged) {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/auth/login'])
       }
     })
   }

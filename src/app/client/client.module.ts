@@ -6,10 +6,7 @@ import {PrimeNGModule} from 'src/app/prime-ng.module'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {EffectsModule} from '@ngrx/effects'
 import {StoreModule} from '@ngrx/store'
-import {CnpjPipe} from 'src/app/shared/pipe/cnpj.pipe'
-import {CpfPipe} from 'src/app/shared/pipe/cpf.pipe'
-import {CpfCnpjPipe} from 'src/app/shared/pipe/cpfCnpj.pipe'
-import {PhonePipe} from 'src/app/shared/pipe/phone.pipe'
+import {SharedModule} from '../shared/shared.module'
 import {ClientCreateComponent} from './components/client-create/client-create.component'
 import {ClientDetailsComponent} from './components/client-details/client-details.component'
 import {ClientListComponent} from './components/client-list/client-list.component'
@@ -19,10 +16,6 @@ import {reducers} from './store/reducers'
 
 @NgModule({
   declarations: [
-    CnpjPipe,
-    CpfPipe,
-    CpfCnpjPipe,
-    PhonePipe,
     ClientListComponent,
     ClientCreateComponent,
     ClientDetailsComponent,
@@ -33,6 +26,7 @@ import {reducers} from './store/reducers'
     AppRoutingModule,
     ReactiveFormsModule,
     PrimeNGModule,
+    SharedModule,
     StoreModule.forFeature('client', reducers),
     EffectsModule.forFeature([ClientEffects]),
   ],

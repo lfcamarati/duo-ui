@@ -1,14 +1,5 @@
 <p-card>
-  <div class="flex justify-content-between">
-    <h1 class="page-title">{{ client?.name }}</h1>
-    <button
-      pButton
-      class="m-1 p-button-outlined"
-      type="button"
-      label="Voltar"
-      (click)="back()"
-    ></button>
-  </div>
+  <h1 class="page-title">{{ client?.name }}</h1>
 
   <p-tabView>
     <p-tabPanel header="Informações">
@@ -80,4 +71,14 @@
       <p>Serviços contratados!</p>
     </p-tabPanel>
   </p-tabView>
+
+  <p-divider></p-divider>
+
+  <button
+    pButton
+    class="m-1 p-button-outlined"
+    type="button"
+    label="Voltar"
+    (click)="back()"
+  ></button>
 </p-card>

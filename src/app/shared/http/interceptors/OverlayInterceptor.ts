@@ -1,7 +1,7 @@
 import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable, finalize} from 'rxjs'
-import {OverlayService} from '../overlay.service'
+import {OverlayService} from '../../services/overlay.service'
 
 @Injectable()
 export class OverlayInterceptor implements HttpInterceptor {

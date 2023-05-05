@@ -1,13 +1,11 @@
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable} from 'rxjs'
+import {Message} from '../../core/domain/Message'
 import {ListResponse} from '../../shared/types/listResponse.interface'
-import {Message} from '../domain/Message'
-import {Service} from '../domain/Service'
+import {Service} from '../types/service.interface'
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ServiceService {
   constructor(private http: HttpClient) {}
 
