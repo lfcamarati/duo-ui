@@ -24,6 +24,7 @@ export class ClientListComponent implements OnInit {
   }
 
   novo(): void {
+    this.store.dispatch(ClientActions.createClientInitial())
     this.router.navigateByUrl('/clientes/novo')
   }
 

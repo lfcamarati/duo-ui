@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
 import {MessageService} from 'primeng/api'
-import {EMPTY, catchError, exhaustMap, map, mergeMap, tap} from 'rxjs'
+import {EMPTY, catchError, exhaustMap, map, mergeMap, of, tap} from 'rxjs'
 import {ClientService} from '../services/client.service'
 import * as ClientActions from './actions'
 
@@ -42,6 +42,20 @@ export class ClientEffects {
         })
       ),
     {dispatch: false}
+  )
+
+  createClient$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ClientActions.createClient),
+      exhaustMap((action) =>
+        this.clientService.salvar(action.client).pipe(
+          map(() => ClientActions.createClientSuccess()),
+          catchError((err) =>
+            of(ClientActions.createClientFailure(err.error.message))
+          )
+        )
+      )
+    )
   )
 
   constructor(

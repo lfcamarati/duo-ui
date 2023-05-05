@@ -7,3 +7,13 @@ export const clientsSelector = createSelector(
   selectFeature,
   (state) => state.clients
 )
+
+export const isClientCreated = createSelector(
+  selectFeature,
+  (state) => state.clientCreated
+)
+
+export const errorSelector = createSelector(
+  selectFeature,
+  (state) => state.error
+)

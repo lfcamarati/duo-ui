@@ -1,8 +1,13 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
-import {MessageService} from 'primeng/api'
+import {Store, select} from '@ngrx/store'
+import {Observable, Subject, takeUntil} from 'rxjs'
+import {MessagesService} from 'src/app/shared/services/messages.service'
+import {AppStateInterface} from 'src/app/types/appState.interface'
 import {ClientService} from '../../services/client.service'
+import * as ClientActions from '../../store/actions'
+import {errorSelector, isClientCreated} from '../../store/selectors'
 import {Client, ClientType} from '../../types/client.interface'
 
 export interface ClientTypes {
@@ -15,91 +20,98 @@ export interface ClientTypes {
   templateUrl: './client-create.component.html',
   styleUrls: ['./client-create.component.css'],
 })
-export class ClientCreateComponent implements OnInit {
+export class ClientCreateComponent implements OnInit, OnDestroy {
+  isClientCreated$: Observable<boolean | null>
+  error$: Observable<string | null>
+  title: string = 'Novo cliente'
   tipos: ClientTypes[] = [
     {type: 'PF', description: 'Pessoa Física'},
     {type: 'PJ', description: 'Pessoa Jurídica'},
   ]
+  createClientForm: FormGroup
 
-  createClientForm = new FormGroup({
-    id: new FormControl<number | null>(null),
-    name: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    cpfCnpj: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-    address: new FormControl<string | null>(null),
-    phone: new FormControl<string | null>(null),
-    email: new FormControl<string | null>(null, [Validators.email]),
-    type: new FormControl<ClientType>('PF', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-  })
+  private unsubscribe$ = new Subject<void>()
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private messageService: MessageService,
+    private store: Store<AppStateInterface>,
+    private messagesService: MessagesService,
     private clientService: ClientService
-  ) {}
+  ) {
+    this.error$ = this.store.pipe(select(errorSelector))
+    this.isClientCreated$ = this.store.pipe(select(isClientCreated))
+
+    this.createClientForm = new FormGroup({
+      id: new FormControl<number | null>(null),
+      name: new FormControl<string>('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      cpfCnpj: new FormControl<string>('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      address: new FormControl<string | null>(null),
+      phone: new FormControl<string | null>(null),
+      email: new FormControl<string | null>(null, [Validators.email]),
+      type: new FormControl<ClientType>('PF', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+    })
+  }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      let idParam = paramMap.get('id')
+    this.activatedRoute.paramMap
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((paramMap) => {
+        let idParam = paramMap.get('id')
 
-      if (idParam) {
-        this.loadClientToEdit(parseInt(idParam))
+        if (idParam) {
+          this.loadClientToEdit(parseInt(idParam))
+          this.title = 'Editar cliente'
+        }
+      })
+
+    this.isClientCreated$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((isClientCreated) => {
+        if (isClientCreated) {
+          this.messagesService.showSuccess('Cliente registrado com sucesso!')
+          this.router.navigateByUrl('/clientes')
+        }
+      })
+
+    this.error$.pipe(takeUntil(this.unsubscribe$)).subscribe((error) => {
+      if (error) {
+        this.messagesService.showError(error)
       }
     })
   }
 
-  private loadClientToEdit(id: number) {
-    this.clientService.getById(id).subscribe({
-      next: (data) => {
-        this.createClientForm.patchValue({
-          id: data.id,
-          name: data.name,
-          cpfCnpj: data.cpfCnpj,
-          address: data.address,
-          email: data.email,
-          phone: data.phone,
-          type: data.type,
-        })
-      },
-    })
+  ngOnDestroy(): void {
+    this.unsubscribe$.next()
+    this.unsubscribe$.complete()
   }
 
-  salvar(): void {
+  save(): void {
     let client: Client = this.createClientForm.getRawValue()
 
     if (client.id) {
-      this.clientService.update(client).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'success',
-            detail: 'Cliente atualizado com sucesso!',
-          })
+      this.clientService
+        .update(client)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe(() => {
+          this.messagesService.showSuccess('Cliente atualizado com sucesso!')
           this.router.navigateByUrl('/clientes')
-        },
-      })
+        })
     } else {
-      this.clientService.salvar(client).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'success',
-            detail: 'Cliente registrado com sucesso!',
-          })
-          this.router.navigateByUrl('/clientes')
-        },
-      })
+      this.store.dispatch(ClientActions.createClient(client))
     }
   }
 
-  cancelar(): void {
+  cancel(): void {
     let confirmBack = true
 
     if (this.createClientForm.dirty) {
@@ -121,5 +133,12 @@ export class ClientCreateComponent implements OnInit {
 
   isPj(): boolean {
     return this.createClientForm.controls['type'].value === 'PJ'
+  }
+
+  private loadClientToEdit(id: number) {
+    this.clientService
+      .getById(id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data) => this.createClientForm.patchValue(data))
   }
 }

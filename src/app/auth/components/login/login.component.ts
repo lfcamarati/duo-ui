@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
-import {FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms'
+import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
-import {MessageService} from 'primeng/api'
-import {Observable, Subscription} from 'rxjs'
+import {Observable, Subject, takeUntil} from 'rxjs'
+import {MessagesService} from 'src/app/shared/services/messages.service'
 import {AppStateInterface} from 'src/app/types/appState.interface'
 import * as AuthActions from '../../store/actions'
 import {errorSelector, isLoggedSelector} from '../../store/selectors'
@@ -18,43 +18,42 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup
 
   isLogged$: Observable<boolean>
-  isLoggedSubscription?: Subscription
-
   loginError$: Observable<string | null>
-  loginErrorSubscription?: Subscription
+
+  private unsubscribe$ = new Subject<void>()
 
   constructor(
     private readonly store: Store<AppStateInterface>,
-    private readonly formBuilder: NonNullableFormBuilder,
+    private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly messageService: MessageService
+    private readonly messagesService: MessagesService
   ) {
     this.isLogged$ = this.store.pipe(select(isLoggedSelector))
     this.loginError$ = this.store.pipe(select(errorSelector))
 
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.nonNullable.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     })
   }
 
   ngOnInit(): void {
-    this.isLoggedSubscription = this.isLogged$.subscribe((isLogged) => {
+    this.isLogged$.pipe(takeUntil(this.unsubscribe$)).subscribe((isLogged) => {
       isLogged
         ? this.router.navigate(['home'])
         : this.router.navigate(['login'])
     })
 
-    this.loginErrorSubscription = this.loginError$.subscribe((error) => {
+    this.loginError$.pipe(takeUntil(this.unsubscribe$)).subscribe((error) => {
       if (error) {
-        this.messageService.add({severity: 'error', detail: error!})
+        this.messagesService.showError(error)
       }
     })
   }
 
   ngOnDestroy(): void {
-    this.isLoggedSubscription?.unsubscribe()
-    this.loginErrorSubscription?.unsubscribe()
+    this.unsubscribe$.next()
+    this.unsubscribe$.complete()
   }
 
   login() {

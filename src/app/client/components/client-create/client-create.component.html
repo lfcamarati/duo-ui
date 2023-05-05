@@ -1,7 +1,7 @@
-<h1 class="page-title">Novo cliente</h1>
+<h1 class="page-title">{{ title }}</h1>
 
 <p-card>
-  <form [formGroup]="createClientForm" (submit)="salvar()">
+  <form [formGroup]="createClientForm" (submit)="save()">
     <h5>Dados Básicos</h5>
 
     <div class="field">
@@ -101,7 +101,7 @@
         class="flex-initial flex m-1 btn-novo p-button-outlined"
         type="button"
         label="Cancelar"
-        (click)="cancelar()"
+        (click)="cancel()"
       ></button>
     </div>
   </form>

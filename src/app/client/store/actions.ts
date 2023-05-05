@@ -15,3 +15,18 @@ export const deleteClientSuccess = createAction(
   '[Client] Delete client success',
   (clientId: number) => ({clientId})
 )
+
+export const createClient = createAction(
+  '[Client] Create client',
+  (client: Client) => ({client})
+)
+export const createClientInitial = createAction(
+  '[Client] Create client initial'
+)
+export const createClientSuccess = createAction(
+  '[Client] Create client success'
+)
+export const createClientFailure = createAction(
+  '[Client] Create client failure',
+  (error: string) => ({error})
+)
