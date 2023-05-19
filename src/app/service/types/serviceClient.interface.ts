@@ -1,13 +1,19 @@
 export interface ServiceClient {
   id: number | null
+  clientId: number
   description: string
-  periodType: ServicePeriodType
-  periodConfig: string[]
   price: number
+  periodType: ServicePeriodType
+  weekDays: WeekDay[] | null
+  specificDate: string | null
 }
 
 export enum ServicePeriodType {
   Weekly = 'WEEKLY',
-  Monthly = 'MONTHLY',
   SpecificDate = 'SPECIFIC_DATE',
+}
+
+export interface WeekDay {
+  name: string
+  description: string
 }

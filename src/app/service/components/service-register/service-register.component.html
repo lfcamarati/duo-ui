@@ -1,6 +1,14 @@
 <h1 class="page-title">Gestão de Rede Social - Novo plano</h1>
 
 <p-card>
+  <div class="field col-3 p-float-label p-input-filled">
+    <p-card>
+      <p class="m-0">
+        {{ client?.name }}
+      </p>
+    </p-card>
+  </div>
+
   <form [formGroup]="registerServiceForm" (submit)="save()">
     <h5>Dados Básicos</h5>
 
@@ -16,16 +24,7 @@
           maxlength="255"
         >
         </textarea>
-        <label for="cpf">Descrição</label>
-      </div>
-
-      <div class="field col-6 p-float-label p-input-filled">
-        <p-selectButton
-          [options]="servicePeriodTypes"
-          formControlName="periodType"
-          optionLabel="name"
-          optionValue="type"
-        ></p-selectButton>
+        <label>Descrição</label>
       </div>
 
       <div class="field col-2 p-float-label p-input-filled">
@@ -41,6 +40,41 @@
         </p-inputNumber>
         <label for="cpf">Valor</label>
       </div>
+
+      <div class="field col-6 p-float-label p-input-filled">
+        <p-selectButton
+          [options]="servicePeriodTypes"
+          formControlName="periodType"
+          optionLabel="name"
+          optionValue="type"
+        ></p-selectButton>
+      </div>
+
+      <ng-container *ngIf="isWeekly()">
+        <div class="field col-4 p-float-label p-input-filled">
+          <p-multiSelect
+            [options]="weekDays"
+            formControlName="weekDays"
+            optionLabel="description"
+            optionValue="name"
+            styleClass="w-full"
+          ></p-multiSelect>
+          <label>Dias da semana</label>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!isWeekly()">
+        <div class="field col-2 p-float-label p-input-filled">
+          <p-calendar
+            dateFormat="dd/mm/yy"
+            formControlName="specificDate"
+            dataType="string"
+            styleClass="w-full"
+            [showIcon]="true"
+          ></p-calendar>
+          <label>Data específica</label>
+        </div>
+      </ng-container>
     </div>
 
     <p-divider></p-divider>

@@ -4,7 +4,6 @@ import {ClientCreateComponent} from './client/components/client-create/client-cr
 import {ClientDetailsComponent} from './client/components/client-details/client-details.component'
 import {ClientListComponent} from './client/components/client-list/client-list.component'
 import {DashboardComponent} from './home/components/dashboard/dashboard.component'
-import {SocialMediaManagementCreateComponent} from './service/components/social-media-management-create/social-media-management-create.component'
 import {AuthGuardService} from './shared/services/authGuard.service'
 
 const routes: Routes = [
@@ -34,13 +33,6 @@ const routes: Routes = [
   {
     path: 'clientes/:id/detalhes',
     component: ClientDetailsComponent,
-    canActivate: [AuthGuardService],
-  },
-
-  // Social Media Management
-  {
-    path: 'gestao-rede-social/novo',
-    component: SocialMediaManagementCreateComponent,
     canActivate: [AuthGuardService],
   },
 

@@ -11,11 +11,13 @@
   </div>
 </div>
 
-<p-blockUI [blocked]="loading">
-  <p-progressSpinner
-    styleClass="w-4rem h-4rem"
-    strokeWidth="5"
-    fill="var(--surface-ground)"
-    animationDuration=".5s"
-  ></p-progressSpinner>
-</p-blockUI>
+<ng-container *ngIf="isLoading$ | async as isLoading">
+  <p-blockUI [blocked]="isLoading">
+    <p-progressSpinner
+      styleClass="w-4rem h-4rem"
+      strokeWidth="5"
+      fill="var(--surface-ground)"
+      animationDuration=".5s"
+    ></p-progressSpinner>
+  </p-blockUI>
+</ng-container>

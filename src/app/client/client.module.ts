@@ -23,10 +23,10 @@ import {reducers} from './store/reducers'
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    SharedModule,
     StoreModule.forFeature('client', reducers),
     EffectsModule.forFeature([ClientEffects]),
   ],

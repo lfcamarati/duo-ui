@@ -10,7 +10,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {EffectsModule} from '@ngrx/effects'
 import {StoreModule} from '@ngrx/store'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
-import {MessageService} from 'primeng/api'
 import {environment} from '../environments/environment'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
@@ -45,7 +44,6 @@ import {httpInterceptorProviders} from './shared/http/interceptors'
   ],
   providers: [
     httpInterceptorProviders,
-    MessageService,
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'},
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute, Router} from '@angular/router'
+import {Store} from '@ngrx/store'
 import {Subject, takeUntil} from 'rxjs'
-import {Contract} from 'src/app/core/domain/Contract'
-import {ContractService} from 'src/app/core/services/contract.service'
+import {AppStateInterface} from 'src/app/shared/types/appState.interface'
+import * as ServiceActions from '../../../service/store/actions'
 import {ClientService} from '../../services/client.service'
 import {Client} from '../../types/client.interface'
 
@@ -13,15 +14,14 @@ import {Client} from '../../types/client.interface'
 })
 export class ClientDetailsComponent implements OnInit {
   client?: Client
-  contracts: Contract[] = []
 
   private unsubscribe$ = new Subject<void>()
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private clientService: ClientService,
-    private contractService: ContractService
+    private store: Store<AppStateInterface>,
+    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +30,6 @@ export class ClientDetailsComponent implements OnInit {
       .subscribe((paramMap) => {
         const clientId = parseInt(paramMap.get('id')!)
         this.findClient(clientId)
-        this.findContracts(clientId)
       })
   }
 
@@ -38,17 +37,17 @@ export class ClientDetailsComponent implements OnInit {
     this.router.navigateByUrl('/clientes')
   }
 
+  registerService() {
+    this.store.dispatch(
+      ServiceActions.registerServiceClientInitial(this.client!)
+    )
+    this.router.navigate(['servicos', 'registrar'])
+  }
+
   private findClient(clientId: number): void {
     this.clientService
       .getById(clientId)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((client) => (this.client = client))
-  }
-
-  private findContracts(clientId: number): void {
-    this.contractService
-      .getByClient(clientId)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((contracts) => (this.contracts = contracts.data))
   }
 }

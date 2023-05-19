@@ -1,3 +1,3 @@
-export interface ListResponse<T> {
+export interface ListResponseInterface<T> {
   data: T[]
 }

@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import {Observable, Subject, takeUntil} from 'rxjs'
-import {MessagesService} from 'src/app/shared/services/messages.service'
+import {MessagesService} from 'src/app/shared/messages/services/messages.service'
 import {AppStateInterface} from 'src/app/shared/types/appState.interface'
 import {ClientService} from '../../services/client.service'
 import * as ClientActions from '../../store/actions'
@@ -78,14 +78,14 @@ export class ClientCreateComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((isClientCreated) => {
         if (isClientCreated) {
-          this.messagesService.showSuccess('Cliente registrado com sucesso!')
+          this.messagesService.addSuccess('Cliente registrado com sucesso!')
           this.router.navigateByUrl('/clientes')
         }
       })
 
     this.error$.pipe(takeUntil(this.unsubscribe$)).subscribe((error) => {
       if (error) {
-        this.messagesService.showError(error)
+        this.messagesService.addError(error)
       }
     })
   }
@@ -103,7 +103,7 @@ export class ClientCreateComponent implements OnInit, OnDestroy {
         .update(client)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(() => {
-          this.messagesService.showSuccess('Cliente atualizado com sucesso!')
+          this.messagesService.addSuccess('Cliente atualizado com sucesso!')
           this.router.navigateByUrl('/clientes')
         })
     } else {

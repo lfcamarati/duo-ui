@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import {Observable, Subject, takeUntil} from 'rxjs'
-import {MessagesService} from 'src/app/shared/services/messages.service'
+import {MessagesService} from 'src/app/shared/messages/services/messages.service'
 import {AppStateInterface} from 'src/app/shared/types/appState.interface'
 import * as AuthActions from '../../store/actions'
 import {errorSelector, isLoggedSelector} from '../../store/selectors'
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.loginError$.pipe(takeUntil(this.unsubscribe$)).subscribe((error) => {
       if (error) {
-        this.messagesService.showError(error)
+        this.messagesService.addError(error)
       }
     })
   }

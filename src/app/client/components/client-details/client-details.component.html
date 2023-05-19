@@ -69,6 +69,16 @@
 
     <p-tabPanel header="Serviços contratados">
       <p>Serviços contratados!</p>
+
+      <div class="grid-nogutter">
+        <button
+          pButton
+          class="m-1 p-button-outlined"
+          type="button"
+          label="Registar novo serviço"
+          (click)="registerService()"
+        ></button>
+      </div>
     </p-tabPanel>
   </p-tabView>
 

@@ -2,15 +2,15 @@ import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable} from 'rxjs'
 import {Message} from '../../core/domain/Message'
-import {ListResponse} from '../../shared/types/listResponse.interface'
+import {ListResponseInterface} from '../../shared/types/listResponse.interface'
 import {Client} from '../types/client.interface'
 
 @Injectable()
 export class ClientService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<ListResponse<Client>> {
-    return this.http.get<ListResponse<Client>>('/clients')
+  getAll(): Observable<ListResponseInterface<Client>> {
+    return this.http.get<ListResponseInterface<Client>>('/clients')
   }
 
   getById(id: number): Observable<Client> {
